@@ -1,36 +1,37 @@
 import React from "react";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, Link, useForm } from "@inertiajs/react";
-import FormUser from "./Partials/Form";
+import FormCreateUser from "./Partials/Form";
 
-const CreateUserPage = ({ auth }) => {
-    const { data, setData, post, errors, processing, recentlySuccessful } =
+const EditUserPage = ({ auth, user }) => {
+    const { data, setData, put, errors, processing, recentlySuccessful } =
         useForm({
-            name: "",
-            email: "",
+            name: user.name,
+            email: user.email,
             password: "",
-            role: "siswa",
+            role: user.role,
         });
-
+    console.log(user);
     const submit = (e) => {
         e.preventDefault();
-        post(route("users.store"));
+        put(route("users.update", user.id));
     };
     return (
         <AuthenticatedLayout
             user={auth.user}
             header={
                 <h2 className="font-semibold text-xl text-white leading-tight">
-                    Create Users
+                    Edit Users
                 </h2>
             }
         >
-            <Head title="Create New User" />
+            <Head title="Edit New User" />
 
             <div className="py-12">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
                     <div className="bg-zinc-900 overflow-hidden shadow-sm sm:rounded-lg">
-                        <FormUser
+                        <FormCreateUser
+                            isEdit
                             setData={setData}
                             data={data}
                             errors={errors}
@@ -44,4 +45,4 @@ const CreateUserPage = ({ auth }) => {
     );
 };
 
-export default CreateUserPage;
+export default EditUserPage;

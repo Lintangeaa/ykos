@@ -3,6 +3,7 @@ import { Link, router } from "@inertiajs/react";
 import React from "react";
 import { FiEdit, FiTrash } from "react-icons/fi";
 const TableUsers = ({ users }) => {
+    console.log(users);
     return (
         <div className="overflow-x-scroll">
             <table className="table-auto w-full text-sm text-left text-gray-700 rounded-lg overflow-hidden">
