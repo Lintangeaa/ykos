@@ -5,15 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Course extends Model
+class Material extends Model
 {
     use HasFactory;
-    protected $table = 'courses';
+    protected $table = 'materials';
     protected $primaryKey = 'id';
     protected $keyType = 'int';
     public $timestamps = true;
     public  $incrementing = true;
     protected $fillable = [
-        'name'
+        'path'
     ];
 }
