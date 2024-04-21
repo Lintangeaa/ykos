@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Course extends Model
 {
@@ -16,4 +17,10 @@ class Course extends Model
     protected $fillable = [
         'name'
     ];
+    public function materials() : HasMany {
+        return $this->hasMany(Material::class, 'course_id', 'id');
+    }
+    public function assignments() : HasMany {
+        return $this->hasMany(Assignment::class, 'course_id', 'id');
+    }
 }
