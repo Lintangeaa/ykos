@@ -29,12 +29,24 @@ export default function Authenticated({ user, header, children }) {
                                     Dashboard
                                 </NavLink>
                                 {user.role == "admin" && (
-                                    <NavLink
-                                        href={route("users.all")}
-                                        active={route().current("users.all")}
-                                    >
-                                        Users
-                                    </NavLink>
+                                    <>
+                                        <NavLink
+                                            href={route("users.all")}
+                                            active={route().current(
+                                                "users.all"
+                                            )}
+                                        >
+                                            Users
+                                        </NavLink>
+                                        <NavLink
+                                            href={route("courses.all")}
+                                            active={route().current(
+                                                "courses.all"
+                                            )}
+                                        >
+                                            Courses
+                                        </NavLink>
+                                    </>
                                 )}
                             </div>
                         </div>
@@ -141,12 +153,20 @@ export default function Authenticated({ user, header, children }) {
                             Dashboard
                         </ResponsiveNavLink>
                         {user.role == "admin" && (
-                            <ResponsiveNavLink
-                                href={route("users.all")}
-                                active={route().current("users.all")}
-                            >
-                                Users
-                            </ResponsiveNavLink>
+                            <>
+                                <ResponsiveNavLink
+                                    href={route("users.all")}
+                                    active={route().current("users.all")}
+                                >
+                                    Users
+                                </ResponsiveNavLink>
+                                <ResponsiveNavLink
+                                    href={route("courses.all")}
+                                    active={route().current("courses.all")}
+                                >
+                                    Courses
+                                </ResponsiveNavLink>
+                            </>
                         )}
                     </div>
 

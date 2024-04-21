@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Foundation\Application;
@@ -30,6 +31,13 @@ Route::middleware('auth')->group(function () {
     Route::put('/users/{id}', [UserController::class, 'update'])->name('users.update');
     Route::delete('/users/{id}', [UserController::class, 'delete'])->name('users.delete');
     Route::get('/users/{id}', [UserController::class, 'edit'])->name('users.edit');
+
+    Route::get('/courses', [CourseController::class, 'getAll'])->name('courses.all');
+    Route::get('/courses/create', [CourseController::class, 'create'])->name('courses.create');
+    Route::post('/courses', [CourseController::class, 'store'])->name('courses.store');
+    Route::put('/courses/{id}', [CourseController::class, 'update'])->name('courses.update');
+    Route::delete('/courses/{id}', [CourseController::class, 'delete'])->name('courses.delete');
+    Route::get('/courses/{id}', [CourseController::class, 'edit'])->name('courses.edit');
 });
 
 require __DIR__.'/auth.php';
