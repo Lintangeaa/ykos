@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\AssignmentController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Foundation\Application;
@@ -32,12 +34,34 @@ Route::middleware('auth')->group(function () {
     Route::delete('/users/{id}', [UserController::class, 'delete'])->name('users.delete');
     Route::get('/users/{id}', [UserController::class, 'edit'])->name('users.edit');
 
-    Route::get('/courses', [CourseController::class, 'getAll'])->name('courses.all');
-    Route::get('/courses/create', [CourseController::class, 'create'])->name('courses.create');
-    Route::post('/courses', [CourseController::class, 'store'])->name('courses.store');
-    Route::put('/courses/{id}', [CourseController::class, 'update'])->name('courses.update');
-    Route::delete('/courses/{id}', [CourseController::class, 'delete'])->name('courses.delete');
-    Route::get('/courses/{id}', [CourseController::class, 'edit'])->name('courses.edit');
+    Route::prefix('/courses')->group( function () {
+        Route::get('', [CourseController::class, 'getAll'])->name('courses.all');
+        Route::get('/create', [CourseController::class, 'create'])->name('courses.create');
+        Route::post('', [CourseController::class, 'store'])->name('courses.store');
+        Route::put('/{id}', [CourseController::class, 'update'])->name('courses.update');
+        Route::delete('/{id}', [CourseController::class, 'delete'])->name('courses.delete');
+        Route::get('/{id}', [CourseController::class, 'edit'])->name('courses.edit');
+
+        Route::prefix('/{courses_id}')->group(function () {
+            Route::prefix('/materials')->group(function(){
+                Route::get('', [MaterialController::class, 'getAll'])->name('materials.all'); // Assuming this lists course materials
+                Route::get('/create', [MaterialController::class, 'create'])->name('materials.create');
+                Route::post('', [MaterialController::class, 'store'])->name('materials.store');
+                Route::post('/{id}', [MaterialController::class, 'update'])->name('materials.update');
+                Route::delete('/{id}', [MaterialController::class, 'delete'])->name('materials.delete');
+                Route::get('/{id}', [MaterialController::class, 'edit'])->name('materials.edit');
+            });
+
+            Route::prefix('/assignments')->group(function(){
+                Route::get('', [AssignmentController::class, 'getAll'])->name('assignments.all'); // Assuming this lists course 
+                Route::get('/create', [AssignmentController::class, 'create'])->name('assignments.create');
+                Route::post('', [AssignmentController::class, 'store'])->name('assignments.store');
+                Route::post('/{id}', [AssignmentController::class, 'update'])->name('assignments.update');
+                Route::delete('/{id}', [AssignmentController::class, 'delete'])->name('assignments.delete');
+                Route::get('/{id}', [AssignmentController::class, 'edit'])->name('assignments.edit');
+            });
+        });
+    });
 });
 
 require __DIR__.'/auth.php';

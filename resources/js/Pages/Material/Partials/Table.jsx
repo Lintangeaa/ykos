@@ -1,7 +1,7 @@
 import { Link, router } from "@inertiajs/react";
 import React from "react";
-import { FiBook, FiEdit, FiTarget, FiTrash } from "react-icons/fi";
-const TableCourses = ({ courses }) => {
+import { FiBook, FiDownload, FiEdit, FiTrash } from "react-icons/fi";
+const TableMaterials = ({ materials, course_id }) => {
     return (
         <div className="overflow-x-scroll">
             <table className="table-auto w-full text-sm text-left text-gray-700 rounded-lg overflow-hidden">
@@ -13,27 +13,30 @@ const TableCourses = ({ courses }) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {courses.length === 0 && (
+                    {materials.length === 0 && (
                         <tr className="bg-zinc-900/80">
                             <td
                                 colSpan={5}
                                 className="py-3 px-6 text-center text-white"
                             >
-                                Courses is empty..
+                                Materials is empty..
                             </td>
                         </tr>
                     )}
-                    {courses.map((course, index) => (
+                    {materials.map((material, index) => (
                         <tr
-                            key={course.id}
+                            key={material.id}
                             className="bg-zinc-900/80 text-white rounded-md"
                         >
                             <td className="py-3 px-6">{index + 1}.</td>
-                            <td className="py-3 px-6">{course.name}</td>
+                            <td className="py-3 px-6">{material.name}</td>
 
                             <td className="py-3 px-6">
-                                {course.role != "admin" && (
-                                    <ActionsTableCourse course={course} />
+                                {material.role != "admin" && (
+                                    <ActionsTableMaterial
+                                        course_id={course_id}
+                                        material={material}
+                                    />
                                 )}
                             </td>
                         </tr>
@@ -44,30 +47,27 @@ const TableCourses = ({ courses }) => {
     );
 };
 
-export default TableCourses;
+export default TableMaterials;
 
-function ActionsTableCourse({ course }) {
+function ActionsTableMaterial({ material, course_id }) {
     const handleDelete = () => {
-        if (confirm("Are you sure to delete this course?")) {
-            router.delete("/courses/" + course.id);
+        if (confirm("Are you sure to delete this material?")) {
+            router.delete(
+                "/courses/" + course_id + "/materials/" + material.id
+            );
         }
     };
     return (
         <div className="flex items-center justify-center gap-3">
-            <Link
-                href={"/courses/" + course.id + "/materials"}
-                className="p-2 bg-orange-500/10 text-orange-500 rounded-md"
+            <a
+                download={true}
+                href={material.path}
+                className="p-2 bg-green-500/10 text-green-500 rounded-md"
             >
-                <FiBook size={20} />
-            </Link>
+                <FiDownload size={20} />
+            </a>
             <Link
-                href={"/courses/" + course.id + "/assignments"}
-                className="p-2 bg-indigo-500/10 text-indigo-500 rounded-md"
-            >
-                <FiTarget size={20} />
-            </Link>
-            <Link
-                href={"/courses/" + course.id}
+                href={"/courses/" + course_id + "/materials/" + material.id}
                 className="p-2 bg-blue-500/10 text-blue-500 rounded-md"
             >
                 <FiEdit size={20} />
