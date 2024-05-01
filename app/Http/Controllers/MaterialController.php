@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 use Inertia\Response;
+use Illuminate\Support\Facades\DB;
 
 class MaterialController extends Controller
 {
@@ -31,13 +32,19 @@ class MaterialController extends Controller
 
     public function store(CreateMaterialRequest $request, $course_id): RedirectResponse {
         $data = $request->validated();
-        $filePath = $request->file('file')->store('files', 'public');
-        $uploadedFile = '/storage/' . $filePath;
-        Material::create([
-            'name' => $data['name'],
-            'course_id' => $course_id,
-            'path' => $uploadedFile
-        ]);
+        DB::beginTransaction();
+        try {
+            $filePath = $request->file('file')->store('files', 'public');
+            $uploadedFile = '/storage/' . $filePath;
+            Material::create([
+                'name' => $data['name'],
+                'course_id' => $course_id,
+                'path' => $uploadedFile
+            ]);
+            DB::commit();
+        } catch (\Throwable $th) {
+            DB::rollback();        
+        }
     
         return Redirect::to('/courses/'. $course_id . '/materials' )->with('success', 'Material created successfully.');
     }

@@ -19,6 +19,7 @@ class AssignmentResource extends JsonResource
             'name' => $this->name,
             'path' => $this->path,
             'course_id' => $this->course_id,
+            'course' => $this->when($this->relationLoaded('course'), new CourseResource($this->course)),
         ];
     }
 }

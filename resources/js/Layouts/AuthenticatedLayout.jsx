@@ -38,16 +38,14 @@ export default function Authenticated({ user, header, children }) {
                                         >
                                             Users
                                         </NavLink>
-                                        <NavLink
-                                            href={route("courses.all")}
-                                            active={route().current(
-                                                "courses.all"
-                                            )}
-                                        >
-                                            Courses
-                                        </NavLink>
                                     </>
                                 )}
+                                <NavLink
+                                    href={route("courses.all")}
+                                    active={route().current("courses.all")}
+                                >
+                                    Courses
+                                </NavLink>
                             </div>
                         </div>
 
@@ -160,14 +158,14 @@ export default function Authenticated({ user, header, children }) {
                                 >
                                     Users
                                 </ResponsiveNavLink>
-                                <ResponsiveNavLink
-                                    href={route("courses.all")}
-                                    active={route().current("courses.all")}
-                                >
-                                    Courses
-                                </ResponsiveNavLink>
                             </>
                         )}
+                        <ResponsiveNavLink
+                            href={route("courses.all")}
+                            active={route().current("courses.all")}
+                        >
+                            Courses
+                        </ResponsiveNavLink>
                     </div>
 
                     <div className="pt-4 pb-1 border-t border-gray-200">

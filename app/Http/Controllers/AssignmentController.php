@@ -6,8 +6,10 @@ use App\Http\Requests\CreateAssignmentRequest;
 use App\Http\Resources\AssignmentCollection;
 use App\Http\Resources\AssignmentResource;
 use App\Models\Assignment;
+use App\Models\AssignmentAnswer;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -16,12 +18,29 @@ class AssignmentController extends Controller
 {
     public function getAll($course_id): Response 
     {
-        $assignment = Assignment::where('course_id', $course_id)->first();    
+        $assignment = Assignment::where('course_id', $course_id)->with('course')->first(); 
+        $siswa_submitted = null; // Default value
+        $assignments = null;
+        // Pengecekan peran pengguna
+        if (auth()->user()->role == "siswa" && isset($assignment)) {
+            $alreadySubmit = AssignmentAnswer::where('assignment_id', $assignment->id)
+                ->where('user_id', auth()->user()->id)
+                ->first();
+            // Mengubah nilai siswa_submitted berdasarkan hasil pengecekan
+            $siswa_submitted = $alreadySubmit ? true : false;
+        } else {
+            $assignments = AssignmentAnswer::where('assignment_id', $assignment->id)->with('user')->get();
+        }
+        
         return Inertia::render('Assignment/All', [
-            'assignment' => new AssignmentResource($assignment),
+            'assignment' => isset($assignment) ? new AssignmentResource($assignment) : null,
             'course_id' => $course_id,
+            'siswa_submitted' => $siswa_submitted,
+            'assignments' => $assignments,
         ]);
     }
+    
+    
     
 
     public function create($course_id): Response  {
@@ -32,19 +51,26 @@ class AssignmentController extends Controller
 
     public function store(CreateAssignmentRequest $request, $course_id): RedirectResponse {
         $data = $request->validated();
-        $filePath = $request->file('file')->store('files', 'public');
-        $uploadedFile = '/storage/' . $filePath;
-        $assignment = Assignment::where('course_id', $course_id)->first();
-        if($assignment) {
-            $assignment->name = $data['name'];
-            $assignment->path = $uploadedFile;
-            $assignment->save();
-        } else {
-            Assignment::create([
-                'name' => $data['name'],
-                'course_id' => $course_id,
-                'path' => $uploadedFile
-            ]);
+        DB::beginTransaction();
+        try {
+            $filePath = $request->file('file')->store('files', 'public');
+            $uploadedFile = '/storage/' . $filePath;
+            $assignment = Assignment::where('course_id', $course_id)->first();
+            if($assignment) {
+                $assignment->name = $data['name'];
+                $assignment->path = $uploadedFile;
+                $assignment->save();
+            } else {
+                Assignment::create([
+                    'name' => $data['name'],
+                    'course_id' => $course_id,
+                    'path' => $uploadedFile
+                ]);
+            }
+            DB::commit();
+        } catch (\Throwable $th) {
+            dd($th);
+            DB::rollBack();
         }
     
         return Redirect::to('/courses/'. $course_id . '/assignments' )->with('success', 'Assignment created successfully.');

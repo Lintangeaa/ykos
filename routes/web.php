@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\AssignmentAnswerController;
 use App\Http\Controllers\AssignmentController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\QuizController;
 use App\Http\Controllers\UserController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -44,7 +46,7 @@ Route::middleware('auth')->group(function () {
 
         Route::prefix('/{courses_id}')->group(function () {
             Route::prefix('/materials')->group(function(){
-                Route::get('', [MaterialController::class, 'getAll'])->name('materials.all'); // Assuming this lists course materials
+                Route::get('', [MaterialController::class, 'getAll'])->name('materials.all'); 
                 Route::get('/create', [MaterialController::class, 'create'])->name('materials.create');
                 Route::post('', [MaterialController::class, 'store'])->name('materials.store');
                 Route::post('/{id}', [MaterialController::class, 'update'])->name('materials.update');
@@ -52,14 +54,25 @@ Route::middleware('auth')->group(function () {
                 Route::get('/{id}', [MaterialController::class, 'edit'])->name('materials.edit');
             });
 
-            Route::prefix('/assignments')->group(function(){
-                Route::get('', [AssignmentController::class, 'getAll'])->name('assignments.all'); // Assuming this lists course 
-                Route::get('/create', [AssignmentController::class, 'create'])->name('assignments.create');
-                Route::post('', [AssignmentController::class, 'store'])->name('assignments.store');
-                Route::post('/{id}', [AssignmentController::class, 'update'])->name('assignments.update');
-                Route::delete('/{id}', [AssignmentController::class, 'delete'])->name('assignments.delete');
-                Route::get('/{id}', [AssignmentController::class, 'edit'])->name('assignments.edit');
+            Route::prefix('/quizzes')->group(function(){
+                Route::get('', [QuizController::class, 'getAll'])->name('quizzes.all'); 
             });
+
+           Route::prefix('/assignments')->group(function() {
+               Route::get('', [AssignmentController::class, 'getAll'])->name('assignments.all'); 
+               Route::get('/create', [AssignmentController::class, 'create'])->name('assignments.create');
+               Route::post('', [AssignmentController::class, 'store'])->name('assignments.store');
+               Route::post('/{id}', [AssignmentController::class, 'update'])->name('assignments.update');
+               Route::delete('/{id}', [AssignmentController::class, 'delete'])->name('assignments.delete');
+               Route::get('/{id}', [AssignmentController::class, 'edit'])->name('assignments.edit');
+
+                Route::prefix('/{assignment_id}')->group(function(){
+                    Route::prefix('/answers')->group(function(){
+                        Route::post('', [AssignmentAnswerController::class, 'submitAssignment'])->name('assignmentsans.store');
+                        Route::post('/{id}', [AssignmentAnswerController::class, 'updateScore'])->name('assignmentsans.updatescore');
+                    });
+                });
+           });
         });
     });
 });

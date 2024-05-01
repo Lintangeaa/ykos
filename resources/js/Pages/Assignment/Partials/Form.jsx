@@ -4,6 +4,7 @@ import InputLabel from "@/Components/InputLabel";
 import PrimaryButton from "@/Components/PrimaryButton";
 import TextInput from "@/Components/TextInput";
 import { FiArrowDownCircle, FiDownloadCloud } from "react-icons/fi";
+import Title from "@/Components/Title";
 
 const FormAssignment = ({
     data,
@@ -13,10 +14,11 @@ const FormAssignment = ({
     processing,
     isEdit = false,
     assignment,
+    user,
 }) => {
-    console.log(assignment);
     return (
         <form onSubmit={submit} className=" space-y-6 p-7">
+            <Title>Assignment</Title>
             <div className="grid-cols-1 md:grid-cols-2 grid gap-3 ">
                 <div>
                     <InputLabel htmlFor="name" value="Name" />
@@ -28,39 +30,50 @@ const FormAssignment = ({
                         onChange={(e) => setData("name", e.target.value)}
                         required={!isEdit}
                         isFocused
+                        readOnly={user.role == "siswa"}
                         autoComplete="name"
                     />
 
                     <InputError className="mt-2" message={errors.name} />
                 </div>
-                <div className="flex items-center justify-between">
-                    <div>
-                        <InputLabel htmlFor="file" value="File" />
+                <div>
+                    <InputLabel htmlFor="file" value="File" />
+
+                    <div className="flex items-center justify-between text-white">
                         <TextInput
                             id="file"
-                            className="mt-1 block w-full"
+                            className={`mt-1 ${
+                                user.role != "siswa" ? "block" : "hidden"
+                            } w-full`}
                             onChange={(e) => setData("file", e.target.files[0])}
                             required={!isEdit}
-                            type="file"
+                            type={user.role != "siswa" ? "file" : "hidden"}
                             accept=".pdf,.doc,.docx"
                         />
-                        <InputError className="mt-2" message={errors.file} />
+                        {assignment?.path ? (
+                            <a
+                                href={assignment.path}
+                                download={true}
+                                className="p-2 mt-1 rounded-full bg-blue-500/10 text-blue-500"
+                            >
+                                <FiDownloadCloud
+                                    title="Download File"
+                                    size={20}
+                                />
+                            </a>
+                        ) : (
+                            <p>File not yet uploaded</p>
+                        )}
                     </div>
-                    {assignment?.path && (
-                        <a
-                            href={assignment.path}
-                            download={true}
-                            className="p-2 rounded-full bg-blue-500/10 text-blue-500"
-                        >
-                            <FiDownloadCloud size={20} />
-                        </a>
-                    )}
+                    <InputError className="mt-2" message={errors.file} />
                 </div>
             </div>
 
-            <div className="flex items-center gap-4">
-                <PrimaryButton disabled={processing}>Save</PrimaryButton>
-            </div>
+            {user.role != "siswa" && (
+                <div className="flex items-center gap-4">
+                    <PrimaryButton disabled={processing}>Save</PrimaryButton>
+                </div>
+            )}
         </form>
     );
 };

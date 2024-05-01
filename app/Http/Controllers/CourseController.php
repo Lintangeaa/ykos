@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 use Inertia\Response;
-
+use Illuminate\Support\Facades\DB;
 class CourseController extends Controller
 {
     public function getAll(Request $request): Response 
@@ -28,10 +28,16 @@ class CourseController extends Controller
 
     public function store(CreateCourseRequest $request): RedirectResponse {
         $data = $request->validated();
-    
-        Course::create([
-            'name' => $data['name'],
-        ]);
+        DB::beginTransaction();
+        try {
+            Course::create([
+                'name' => $data['name'],
+            ]);
+            DB::commit();
+        } catch (\Throwable $th) {
+            //throw $th;
+            DB::rollBack();
+        }
     
         return Redirect::to('/courses')->with('success', 'Course created successfully.');
     }
@@ -46,7 +52,13 @@ class CourseController extends Controller
     
         $data = $request->only(['name']);
     
-        $course->update($data);
+        DB::beginTransaction();
+        try {
+            $course->update($data);
+            DB::commit();
+        } catch (\Throwable $th) {
+            DB::rollBack();
+        }
     
         return Redirect::to('/courses')->with('success', 'Course updated successfully.');
     }

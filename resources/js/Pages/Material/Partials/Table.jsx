@@ -1,7 +1,7 @@
 import { Link, router } from "@inertiajs/react";
 import React from "react";
 import { FiBook, FiDownload, FiEdit, FiTrash } from "react-icons/fi";
-const TableMaterials = ({ materials, course_id }) => {
+const TableMaterials = ({ materials, course_id, user }) => {
     return (
         <div className="overflow-x-scroll">
             <table className="table-auto w-full text-sm text-left text-gray-700 rounded-lg overflow-hidden">
@@ -36,6 +36,7 @@ const TableMaterials = ({ materials, course_id }) => {
                                     <ActionsTableMaterial
                                         course_id={course_id}
                                         material={material}
+                                        user={user}
                                     />
                                 )}
                             </td>
@@ -49,7 +50,7 @@ const TableMaterials = ({ materials, course_id }) => {
 
 export default TableMaterials;
 
-function ActionsTableMaterial({ material, course_id }) {
+function ActionsTableMaterial({ material, course_id, user }) {
     const handleDelete = () => {
         if (confirm("Are you sure to delete this material?")) {
             router.delete(
@@ -66,19 +67,28 @@ function ActionsTableMaterial({ material, course_id }) {
             >
                 <FiDownload size={20} />
             </a>
-            <Link
-                href={"/courses/" + course_id + "/materials/" + material.id}
-                className="p-2 bg-blue-500/10 text-blue-500 rounded-md"
-            >
-                <FiEdit size={20} />
-            </Link>
-
-            <button
-                onClick={() => handleDelete()}
-                className="p-2 bg-red-500/10 text-red-500 rounded-md"
-            >
-                <FiTrash size={20} />
-            </button>
+            {user.role != "siswa" && (
+                <>
+                    {" "}
+                    <Link
+                        href={
+                            "/courses/" +
+                            course_id +
+                            "/materials/" +
+                            material.id
+                        }
+                        className="p-2 bg-blue-500/10 text-blue-500 rounded-md"
+                    >
+                        <FiEdit size={20} />
+                    </Link>
+                    <button
+                        onClick={() => handleDelete()}
+                        className="p-2 bg-red-500/10 text-red-500 rounded-md"
+                    >
+                        <FiTrash size={20} />
+                    </button>
+                </>
+            )}
         </div>
     );
 }

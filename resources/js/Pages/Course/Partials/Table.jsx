@@ -1,7 +1,7 @@
 import { Link, router } from "@inertiajs/react";
 import React from "react";
 import { FiBook, FiEdit, FiTarget, FiTrash } from "react-icons/fi";
-const TableCourses = ({ courses }) => {
+const TableCourses = ({ courses, user }) => {
     return (
         <div className="overflow-x-scroll">
             <table className="table-auto w-full text-sm text-left text-gray-700 rounded-lg overflow-hidden">
@@ -33,7 +33,7 @@ const TableCourses = ({ courses }) => {
 
                             <td className="py-3 px-6">
                                 {course.role != "admin" && (
-                                    <ActionsTableCourse course={course} />
+                                    <ActionsTableCourse user={user} course={course} />
                                 )}
                             </td>
                         </tr>
@@ -46,7 +46,7 @@ const TableCourses = ({ courses }) => {
 
 export default TableCourses;
 
-function ActionsTableCourse({ course }) {
+function ActionsTableCourse({ course, user }) {
     const handleDelete = () => {
         if (confirm("Are you sure to delete this course?")) {
             router.delete("/courses/" + course.id);
@@ -66,19 +66,23 @@ function ActionsTableCourse({ course }) {
             >
                 <FiTarget size={20} />
             </Link>
-            <Link
-                href={"/courses/" + course.id}
-                className="p-2 bg-blue-500/10 text-blue-500 rounded-md"
-            >
-                <FiEdit size={20} />
-            </Link>
+            {user.role != "siswa" && (
+                <>
+                    <Link
+                        href={"/courses/" + course.id}
+                        className="p-2 bg-blue-500/10 text-blue-500 rounded-md"
+                    >
+                        <FiEdit size={20} />
+                    </Link>
 
-            <button
-                onClick={() => handleDelete()}
-                className="p-2 bg-red-500/10 text-red-500 rounded-md"
-            >
-                <FiTrash size={20} />
-            </button>
+                    <button
+                        onClick={() => handleDelete()}
+                        className="p-2 bg-red-500/10 text-red-500 rounded-md"
+                    >
+                        <FiTrash size={20} />
+                    </button>
+                </>
+            )}
         </div>
     );
 }

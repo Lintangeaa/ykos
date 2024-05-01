@@ -17,15 +17,17 @@ export default function GetAllCourses({ auth, courses }) {
 
             <div className="py-12">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-3">
-                    <div className="w-full flex justify-end">
-                        <Link
-                            className="p-2 rounded-full bg-zinc-900 text-white text-sm "
-                            href="/courses/create"
-                        >
-                            <FiPlus size={20} />
-                        </Link>
-                    </div>
-                    <TableCourses courses={courses.data} />
+                    {auth.user.role != "siswa" && (
+                        <div className="w-full flex justify-end">
+                            <Link
+                                className="p-2 rounded-full bg-zinc-900 text-white text-sm "
+                                href="/courses/create"
+                            >
+                                <FiPlus size={20} />
+                            </Link>
+                        </div>
+                    )}
+                    <TableCourses courses={courses.data} user={auth.user} />
                 </div>
             </div>
         </AuthenticatedLayout>
