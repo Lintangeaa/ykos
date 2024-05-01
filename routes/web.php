@@ -55,7 +55,7 @@ Route::middleware('auth')->group(function () {
             });
 
             Route::prefix('/quizzes')->group(function(){
-                Route::get('', [QuizController::class, 'getAll'])->name('quizzes.all'); 
+                Route::get('', [QuizController::class, 'index'])->name('quizzes.all'); 
             });
 
            Route::prefix('/assignments')->group(function() {
