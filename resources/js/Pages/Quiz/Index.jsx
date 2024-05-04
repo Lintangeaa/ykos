@@ -3,8 +3,10 @@ import BasicContainer from "@/Components/BasicContainer";
 import { Head, Link, useForm } from "@inertiajs/react";
 import { Transition } from "@headlessui/react";
 import CreateQuizzes from "./Partials/CreateQuizzes";
+import ListQuiz from "./Partials/ListQuiz";
 
-export default function Quiz({ quizzes, course_id, auth }) {
+export default function Quiz({ quizzes, course_id, auth, alreadyAnswer }) {
+    console.log(quizzes);
     return (
         <AuthenticatedLayout
             user={auth.user}
@@ -18,7 +20,18 @@ export default function Quiz({ quizzes, course_id, auth }) {
 
             <div className="py-12 space-y-6 text-white">
                 <BasicContainer>
-                    <CreateQuizzes />
+                    {auth.user.role != "siswa" ? (
+                        <CreateQuizzes
+                            course_id={course_id}
+                            initQuizzes={quizzes}
+                        />
+                    ) : (
+                        <ListQuiz
+                            quiz={quizzes}
+                            course_id={course_id}
+                            alreadyAnswer={alreadyAnswer}
+                        />
+                    )}
                 </BasicContainer>
             </div>
         </AuthenticatedLayout>

@@ -2,6 +2,7 @@ import { UserRoleBadge } from "@/Pages/Profile/Partials/UpdateProfileInformation
 import { Link, router } from "@inertiajs/react";
 import React from "react";
 import { FiEdit, FiTrash } from "react-icons/fi";
+import { MdScore } from "react-icons/md";
 const TableUsers = ({ users }) => {
     console.log(users);
     return (
@@ -61,6 +62,14 @@ function ActionsTableUser({ user }) {
     };
     return (
         <div className="flex items-center gap-3">
+            {user.role == "siswa" && (
+                <Link
+                    href={route("scores.index", user.id)}
+                    className="p-2 bg-blue-500/10 text-blue-500 rounded-md"
+                >
+                    <MdScore size={20} />
+                </Link>
+            )}
             <Link
                 href={"/users/" + user.id}
                 className="p-2 bg-blue-500/10 text-blue-500 rounded-md"

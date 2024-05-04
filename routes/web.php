@@ -3,8 +3,10 @@
 use App\Http\Controllers\AssignmentAnswerController;
 use App\Http\Controllers\AssignmentController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\QuizAnswerController;
 use App\Http\Controllers\QuizController;
 use App\Http\Controllers\UserController;
 use Illuminate\Foundation\Application;
@@ -24,7 +26,9 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+
 Route::middleware('auth')->group(function () {
+
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -36,6 +40,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/users/{id}', [UserController::class, 'delete'])->name('users.delete');
     Route::get('/users/{id}', [UserController::class, 'edit'])->name('users.edit');
 
+    Route::prefix('/scores')->group(function(){
+        Route::get('/{user_id}', [QuizAnswerController::class, 'index'])->name('scores.index');
+    });
+    
     Route::prefix('/courses')->group( function () {
         Route::get('', [CourseController::class, 'getAll'])->name('courses.all');
         Route::get('/create', [CourseController::class, 'create'])->name('courses.create');
@@ -56,7 +64,15 @@ Route::middleware('auth')->group(function () {
 
             Route::prefix('/quizzes')->group(function(){
                 Route::get('', [QuizController::class, 'index'])->name('quizzes.all'); 
+                Route::get('/{id}', [QuizController::class, 'execQuiz'])->name('quizzes.exec'); 
+                Route::post('/{id}', [QuizController::class, 'tempSaveAns'])->name('quizzes.temp'); 
             });
+
+            Route::prefix('/feedbacks')->group(function(){
+                Route::get('', [FeedbackController::class, 'index'])->name('feedbacks.index');
+                Route::post('', [FeedbackController::class, 'store'])->name('feedbacks.store');
+            });
+            
 
            Route::prefix('/assignments')->group(function() {
                Route::get('', [AssignmentController::class, 'getAll'])->name('assignments.all'); 

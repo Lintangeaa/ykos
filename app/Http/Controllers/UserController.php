@@ -7,10 +7,12 @@ use App\Http\Resources\UserCollection;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Validation\Rule;
 use Inertia\Inertia;
 use Inertia\Response;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -21,8 +23,43 @@ class UserController extends Controller
             'users' => new UserCollection($users)
         ]);
     }
-    
 
+    public function uploadFile(Request $request) {
+        $response = [];
+    
+        if ($request->hasFile('file')) {
+            $filePath = $request->file('file')->store('files', 'public');
+            $uploadedFile = '/storage/' . $filePath;
+            $response['path'] = $uploadedFile;
+        }
+    
+        return response()->json($response, 200);
+    }
+
+    public function deleteFile(Request $request) {
+        $response = [];
+    
+        // Memeriksa apakah ada path yang dikirim dalam permintaan
+        if ($request->has('path')) {
+            // Mendapatkan path dari permintaan
+            $filePath =  $request->input('path');
+            $replaced_path = str_replace("/storage/", "", $filePath);
+            Log::info($replaced_path);
+            // Menghapus file jika ada
+            if (Storage::disk('public')->exists($replaced_path)) {
+                Storage::disk('public')->delete($replaced_path);
+                $response['message'] = 'File deleted successfully.';
+            } else {
+                $response['message'] = 'File not found.';
+            }
+        } else {
+            $response['message'] = 'Path not provided.';
+        }
+    
+        return response()->json($response, 200);
+    }
+    
+    
     public function create(): Response  {
         return Inertia::render('User/Create');
     }

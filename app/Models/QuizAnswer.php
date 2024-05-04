@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class QuizAnswer extends Model
 {
     use HasFactory;
-    protected $table = 'quizzes';
+    protected $table = 'quiz_answers';
     protected $primaryKey = 'id';
     protected $keyType = 'int';
     public $timestamps = true;

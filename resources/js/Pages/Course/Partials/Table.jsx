@@ -1,7 +1,7 @@
 import { Link, router } from "@inertiajs/react";
 import React from "react";
 import { FiBook, FiEdit, FiTarget, FiTrash } from "react-icons/fi";
-import { MdQuiz } from "react-icons/md";
+import { MdFeedback, MdQuiz } from "react-icons/md";
 const TableCourses = ({ courses, user }) => {
     return (
         <div className="overflow-x-scroll">
@@ -75,6 +75,12 @@ function ActionsTableCourse({ course, user }) {
                 className="p-2 bg-indigo-500/10 text-indigo-500 rounded-md"
             >
                 <MdQuiz size={20} />
+            </Link>
+            <Link
+                href={"/courses/" + course.id + "/feedbacks"}
+                className="p-2 bg-zinc-500/10 text-zinc-500 rounded-md"
+            >
+                <MdFeedback size={20} />
             </Link>
             {user.role != "siswa" && (
                 <>

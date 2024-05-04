@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Feedback extends Model
 {
     use HasFactory;
-    protected $table = 'feedbacks';
+    protected $table = 'feedback';
     protected $primaryKey = 'id';
     protected $keyType = 'int';
     public $timestamps = true;
