@@ -76,17 +76,6 @@ export default function GetAllAssignments({
                 </BasicContainer>
                 {assignment?.data && (
                     <BasicContainer>
-                        <Transition
-                            show={siswa_submitted ?? false}
-                            enter="transition ease-in-out"
-                            enterFrom="opacity-0"
-                            leave="transition ease-in-out"
-                            leaveTo="opacity-0"
-                        >
-                            <div className="px-4 py-2 bg-green-500/10 text-green-500 rounded-r-lg w-fit">
-                                Submitted.
-                            </div>
-                        </Transition>
                         <FormAssignmentSiswa
                             setData={setDataS}
                             data={dataS}
@@ -96,13 +85,24 @@ export default function GetAllAssignments({
                             assignment={assignment?.data}
                             user={auth.user}
                         />
+                        <Transition
+                            show={siswa_submitted ?? false}
+                            enter="transition ease-in-out"
+                            enterFrom="opacity-0"
+                            leave="transition ease-in-out"
+                            leaveTo="opacity-0"
+                        >
+                            <div className="px-4 py-2 bg-green-500/10 text-green-500 rounded-lg w-fit">
+                                You have already submitted.
+                            </div>
+                        </Transition>
                     </BasicContainer>
                 )}
                 {auth.user.role != "siswa" && (
                     <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
                         <div className=" overflow-hidden shadow-sm sm:rounded-lg">
                             <TableAssignmentAns
-                                answers={assignments}
+                                answers={assignments ?? []}
                                 course_id={course_id}
                                 assignment_id={assignment?.data?.id}
                             />

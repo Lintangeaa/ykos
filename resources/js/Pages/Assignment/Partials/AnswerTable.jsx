@@ -59,7 +59,7 @@ const TableAssignmentAns = ({ answers, user, course_id, assignment_id }) => {
                             <td className="py-3 px-6">{ans.user.name}</td>
                             <td className="py-3 px-6">
                                 <a href={ans.path} download={true}>
-                                    <FiDownload size={20} />
+                                    <FiDownload size={15} />
                                 </a>
                             </td>
                             <td className="py-3 px-6">
@@ -85,7 +85,7 @@ const TableAssignmentAns = ({ answers, user, course_id, assignment_id }) => {
                                         onClick={() => handleSave(ans)}
                                         className="text-blue-500 focus:outline-none"
                                     >
-                                        <FiSave size={20} />
+                                        <FiSave size={15} />
                                     </button>
                                 ) : (
                                     <button
@@ -94,7 +94,7 @@ const TableAssignmentAns = ({ answers, user, course_id, assignment_id }) => {
                                         }
                                         className="text-yellow-500 focus:outline-none"
                                     >
-                                        <FiEdit size={20} />
+                                        <FiEdit size={15} />
                                     </button>
                                 )}
                             </td>

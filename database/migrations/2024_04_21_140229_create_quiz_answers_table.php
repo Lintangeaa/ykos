@@ -17,6 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->integer('score');
             $table->json('answer');
+            $table->boolean('is_submitted')->default(false);
             $table->timestamps();
 
             $table->foreign('quiz_id')->references('id')->on('quizzes')->cascadeOnDelete();

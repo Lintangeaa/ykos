@@ -28,7 +28,7 @@ class AssignmentController extends Controller
                 ->first();
             // Mengubah nilai siswa_submitted berdasarkan hasil pengecekan
             $siswa_submitted = $alreadySubmit ? true : false;
-        } else {
+        } else if (auth()->user()->role != "siswa" && isset($assignment)) {
             $assignments = AssignmentAnswer::where('assignment_id', $assignment->id)->with('user')->get();
         }
         
