@@ -24,6 +24,11 @@ class UserController extends Controller
         ]);
     }
 
+    public function getTeachers(Request $request) {
+        $users = User::where('role', 'guru')->get();
+        return response()->json($users, 200);
+    }
+
     public function uploadFile(Request $request) {
         $response = [];
     

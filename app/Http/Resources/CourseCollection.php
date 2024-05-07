@@ -14,10 +14,11 @@ class CourseCollection extends ResourceCollection
      */
     public function toArray(Request $request)
     {
-        return $this->collection->map(function ($user) {
+        return $this->collection->map(function ($course) {
             return [
-                'id' => $user->id,
-                'name' => $user->name,
+                'id' => $course->id,
+                'name' => $course->name,
+                'code' => $course->code,
                 // Add other fields if needed
             ];
         });

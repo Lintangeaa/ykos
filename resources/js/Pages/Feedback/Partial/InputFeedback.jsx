@@ -14,9 +14,10 @@ const InputFeedback = ({ course_id, user_id }) => {
         });
 
     const submit = (e) => {
+        console.log(user_id, data);
         e.preventDefault();
         // console.log(course_id, user_id);
-        setData({ text: "" });
+        setData({ text: "", course_id, user_id });
         post(route("feedbacks.store", course_id));
     };
     return (

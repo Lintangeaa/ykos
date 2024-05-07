@@ -4,6 +4,7 @@ import TableCourses from "./Partials/Table";
 import { FiPlus } from "react-icons/fi";
 
 export default function GetAllCourses({ auth, courses }) {
+    console.log(courses);
     return (
         <AuthenticatedLayout
             user={auth.user}
@@ -27,7 +28,7 @@ export default function GetAllCourses({ auth, courses }) {
                             </Link>
                         </div>
                     )}
-                    <TableCourses courses={courses.data} user={auth.user} />
+                    <TableCourses courses={courses} user={auth.user} />
                 </div>
             </div>
         </AuthenticatedLayout>

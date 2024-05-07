@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CourseUser;
 use App\Models\Quiz;
 use App\Models\QuizAnswer;
 use Exception;
