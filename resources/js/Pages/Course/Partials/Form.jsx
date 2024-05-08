@@ -31,6 +31,23 @@ const FormCourse = ({
 
                     <InputError className="mt-2" message={errors.name} />
                 </div>
+                {isEdit && (
+                    <div>
+                        <InputLabel htmlFor="code" value="Code" />
+
+                        <TextInput
+                            id="code"
+                            className="mt-1 block w-full"
+                            value={data.code}
+                            onChange={(e) => setData("code", e.target.value)}
+                            required={!isEdit}
+                            isFocused
+                            autoComplete="code"
+                        />
+
+                        <InputError className="mt-2" message={errors.code} />
+                    </div>
+                )}
             </div>
 
             <div className="flex items-center gap-4">

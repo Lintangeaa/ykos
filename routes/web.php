@@ -68,6 +68,10 @@ Route::middleware('auth')->group(function () {
                 Route::post('/{id}', [QuizController::class, 'tempSaveAns'])->name('quizzes.temp'); 
             });
 
+            Route::prefix('/teachers')->group(function(){
+                Route::get('', [CourseController::class, 'teachers'])->name('courses.teachers'); 
+            });
+
             Route::prefix('/feedbacks')->group(function(){
                 Route::get('', [FeedbackController::class, 'index'])->name('feedbacks.index');
                 Route::post('', [FeedbackController::class, 'store'])->name('feedbacks.store');

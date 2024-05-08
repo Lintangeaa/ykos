@@ -7,6 +7,7 @@ const EditCoursePage = ({ auth, course }) => {
     const { data, setData, put, errors, processing, recentlySuccessful } =
         useForm({
             name: course.name,
+            code: course.code,
         });
     console.log(course);
     const submit = (e) => {
