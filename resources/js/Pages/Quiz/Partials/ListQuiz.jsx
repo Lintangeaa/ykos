@@ -4,7 +4,7 @@ import { Link } from "@inertiajs/react";
 import React from "react";
 
 const ListQuiz = ({ alreadyAnswer, quiz, course_id }) => {
-    if (!quiz)
+    if (!quiz || quiz?.length == 0)
         return (
             <div>
                 <Title>Quiz</Title>
