@@ -15,16 +15,23 @@ class AssignmentAnswerController extends Controller
         $validated = $request->validate([
             'file' => 'required|file|mimes:pdf,doc,docx',
         ]);
+        $user = auth()->user();
+        $exists = AssignmentAnswer::where('assignment_id', $assignment_id)->where('user_id', $user->id)->first();
         DB::beginTransaction();
         try {
             $filePath = $request->file('file')->store('files', 'public');
             $uploadedFile = '/storage/' . $filePath;
-            AssignmentAnswer::create([
-                'assignment_id' => $assignment_id,
-                'user_id' => auth()->user()->id,
-                'path' => $uploadedFile,
-                'score' => 0
-            ]);
+            if($exists) {
+                $exists->path = $uploadedFile;
+                $exists->save();
+            } else {
+                AssignmentAnswer::create([
+                    'assignment_id' => $assignment_id,
+                    'user_id' => $user->id,
+                    'path' => $uploadedFile,
+                    'score' => 0
+                ]);
+            }
             DB::commit();
         } catch (\Throwable $th) {
             DB::rollBack();
