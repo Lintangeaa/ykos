@@ -22,7 +22,7 @@ export default function AssignTeacher({ auth, teachers, course_id }) {
         <AuthenticatedLayout
             user={auth.user}
             header={
-                <h2 className="font-semibold text-xl text-white leading-tight">
+                <h2 className="font-semibold text-xl text-black leading-tight">
                     Assign Teacher
                 </h2>
             }
@@ -92,7 +92,7 @@ const SearchData = ({ data, course_id }) => {
             />
             <PrimaryButton onClick={() => handleSubmit()}>assign</PrimaryButton>
             {searchTerm && (
-                <div className="absolute bg-zinc-700 rounded-md mt-1 w-fit top-full text-white">
+                <div className="absolute bg-zinc-700 rounded-md mt-1 w-fit top-full text-black">
                     {searchResults.length == 0 && !selected && (
                         <p className="px-4 py-2">Teacher Not Found</p>
                     )}

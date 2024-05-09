@@ -9,7 +9,7 @@ export default function GetAllCourses({ auth, courses }) {
         <AuthenticatedLayout
             user={auth.user}
             header={
-                <h2 className="font-semibold text-xl text-white leading-tight">
+                <h2 className="font-semibold text-xl text-black leading-tight">
                     Manage Courses
                 </h2>
             }
@@ -21,7 +21,7 @@ export default function GetAllCourses({ auth, courses }) {
                     {auth.user.role != "siswa" && (
                         <div className="w-full flex justify-end">
                             <Link
-                                className="p-2 rounded-full bg-zinc-900 text-white text-sm "
+                                className="p-2 rounded-full bg-zinc-200 text-black text-sm "
                                 href="/courses/create"
                             >
                                 <FiPlus size={20} />

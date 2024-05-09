@@ -178,7 +178,7 @@ const CreateQuizzes = ({ course_id, initQuizzes }) => {
         <div className="p-7">
             <div className="grid grid-cols-2 gap-3">
                 {quizzes.map((quiz, index) => (
-                    <div key={index} className="mb-4 bg-zinc-900">
+                    <div key={index} className="mb-4 bg-white">
                         <div className="flex gap-2 mb-2">
                             <span>Question {quiz.number}:</span>
 
@@ -195,7 +195,7 @@ const CreateQuizzes = ({ course_id, initQuizzes }) => {
                                     type="text"
                                     placeholder="Question"
                                     value={quiz.question}
-                                    className="w-full px-4 py-2 bg-zinc-800 border-none outline-none rounded-md focus:ring-white"
+                                    className="w-full px-4 py-2 bg-zinc-200 border-none outline-none rounded-md focus:ring-white"
                                     onChange={(e) =>
                                         handleQuestionChange(index, e)
                                     }
@@ -247,7 +247,7 @@ const CreateQuizzes = ({ course_id, initQuizzes }) => {
                                         onChange={(e) =>
                                             handleAnswerChange(index, e)
                                         }
-                                        className="w-28 px-4 py-2 bg-zinc-800 border-none outline-none rounded-md focus:ring-white"
+                                        className="w-28 px-4 py-2 bg-zinc-200 border-none outline-none rounded-md focus:ring-white"
                                     >
                                         {quiz.options.map(
                                             (option, optionIndex) => (
@@ -270,7 +270,7 @@ const CreateQuizzes = ({ course_id, initQuizzes }) => {
                                             type="text"
                                             placeholder="Option"
                                             value={option}
-                                            className="w-full px-4 py-2 bg-zinc-800 border-none outline-none rounded-md focus:ring-white"
+                                            className="w-full px-4 py-2 bg-zinc-200 border-none outline-none rounded-md focus:ring-white"
                                             onChange={(e) =>
                                                 handleOptionChange(
                                                     index,
@@ -308,8 +308,8 @@ const CreateQuizzes = ({ course_id, initQuizzes }) => {
                     </button>
                 )}
             </div>
-            <div className="flex gap-3">
-                <PrimaryButton className="mt-3" onClick={() => saveQuizzes()}>
+            <div className="flex gap-3 items-center mt-3">
+                <PrimaryButton onClick={() => saveQuizzes()}>
                     Save
                 </PrimaryButton>
                 <Transition
@@ -319,7 +319,7 @@ const CreateQuizzes = ({ course_id, initQuizzes }) => {
                     leave="transition ease-in-out"
                     leaveTo="opacity-0"
                 >
-                    <div className="fixed bottom-6 right-6 px-4 py-2 z-50 bg-green-500/20 text-green-500 rounded-lg w-fit">
+                    <div className=" px-4 py-2 z-50 bg-green-500 text-white rounded-lg w-fit">
                         Saved.
                     </div>
                 </Transition>

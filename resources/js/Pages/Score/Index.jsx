@@ -11,14 +11,14 @@ const ScoreUser = ({ auth, quizScores, assignmentScores }) => {
         <AuthenticatedLayout
             user={auth.user}
             header={
-                <h2 className="font-semibold text-xl text-white leading-tight">
+                <h2 className="font-semibold text-xl text-black leading-tight">
                     Student Score
                 </h2>
             }
         >
             <Head title="Student Score" />
 
-            <div className="py-12 space-y-6 text-white max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div className="py-12 space-y-6 text-black max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <TableAssignmentScores datas={assignmentScores} />
                 <TableQuizScores datas={quizScores} />
             </div>

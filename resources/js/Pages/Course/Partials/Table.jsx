@@ -18,7 +18,7 @@ const TableCourses = ({ courses, user }) => {
     return (
         <div className="overflow-x-scroll">
             <table className="table-auto w-full text-sm text-left text-gray-700 rounded-lg overflow-hidden">
-                <thead className="text-sm text-white uppercase bg-zinc-900">
+                <thead className="text-sm text-black uppercase bg-white">
                     <tr>
                         <th className="py-3 px-6">#</th>
                         <th className="py-3 px-6">Name</th>
@@ -30,10 +30,10 @@ const TableCourses = ({ courses, user }) => {
                 </thead>
                 <tbody>
                     {courses.length === 0 && (
-                        <tr className="bg-zinc-900/80">
+                        <tr className="bg-white/80">
                             <td
                                 colSpan={5}
-                                className="py-3 px-6 text-center text-white"
+                                className="py-3 px-6 text-center text-black"
                             >
                                 Courses is empty..
                             </td>
@@ -42,13 +42,15 @@ const TableCourses = ({ courses, user }) => {
                     {courses.map((course, index) => (
                         <tr
                             key={course.id}
-                            className="bg-zinc-900/80 text-white rounded-md"
+                            className="bg-white/80 text-black rounded-md"
                         >
                             <td className="py-3 px-6">{index + 1}.</td>
-                            <td className="py-3 px-6 flex gap-2 items-center">
-                                <p>{course.name}</p>
-                                {!course.isHaveAccess &&
-                                    user.role == "siswa" && <FiLock />}
+                            <td className="py-3 px-6">
+                                <div className="flex gap-2 items-center justify-start">
+                                    <p>{course.name}</p>
+                                    {!course.isHaveAccess &&
+                                        user.role == "siswa" && <FiLock />}
+                                </div>
                             </td>
                             {user.role != "siswa" && (
                                 <td className="py-3 px-6">{course.code}</td>
@@ -104,7 +106,7 @@ function ActionsTableCourse({ course, user }) {
         }
     };
     return (
-        <div className="flex items-center justify-center gap-3">
+        <div className="flex items-center justify-center gap-3 flex-wrap max-w-1/2">
             <Popup isOpen={isOpen} setIsOpen={setIsOpen}>
                 <p className={`${!err && "hidden"} text-red-400 mb-3`}>{err}</p>
                 <div className="items-center gap-3 justify-center flex">
@@ -128,7 +130,7 @@ function ActionsTableCourse({ course, user }) {
                     href={"/courses/" + course.id + "/teachers"}
                     className="p-2 bg-green-500/10 text-green-500 rounded-md"
                 >
-                    <FiUsers size={20} />
+                    <p>TEACHERS</p>
                 </Link>
             )}
             {user.role == "siswa" && course.isHaveAccess ? (
@@ -137,34 +139,37 @@ function ActionsTableCourse({ course, user }) {
                         href={"/courses/" + course.id + "/materials"}
                         className="p-2 bg-orange-500/10 text-orange-500 rounded-md"
                     >
-                        <FiBook size={20} />
+                        <p>MATERIALS</p>
                     </Link>
                     <Link
                         href={"/courses/" + course.id + "/assignments"}
                         className="p-2 bg-indigo-500/10 text-indigo-500 rounded-md"
                     >
-                        <FiTarget size={20} />
+                        <p>ASSIGNMENT</p>
                     </Link>
                     <Link
                         href={"/courses/" + course.id + "/quizzes"}
                         className="p-2 bg-indigo-500/10 text-indigo-500 rounded-md"
                     >
-                        <MdQuiz size={20} />
+                        <p>QUIZ</p>
                     </Link>
                     <Link
                         href={"/courses/" + course.id + "/feedbacks"}
                         className="p-2 bg-zinc-500/10 text-zinc-500 rounded-md"
                     >
-                        <MdFeedback size={20} />
+                        <p>FEEDBACK</p>
                     </Link>
                 </>
             ) : (
-                <button
-                    onClick={() => setIsOpen(true)}
-                    className="p-2 rounded-md bg-green-500/10 text-green-500"
-                >
-                    <FiKey />
-                </button>
+                user.role == "siswa" &&
+                !course.isHaveAccess && (
+                    <button
+                        onClick={() => setIsOpen(true)}
+                        className="p-2 rounded-md bg-green-500/10 text-green-500"
+                    >
+                        <FiKey />
+                    </button>
+                )
             )}
             {user.role != "siswa" && (
                 <>
@@ -172,25 +177,25 @@ function ActionsTableCourse({ course, user }) {
                         href={"/courses/" + course.id + "/materials"}
                         className="p-2 bg-orange-500/10 text-orange-500 rounded-md"
                     >
-                        <FiBook size={20} />
+                        <p>MATERIALS</p>
                     </Link>
                     <Link
                         href={"/courses/" + course.id + "/assignments"}
                         className="p-2 bg-indigo-500/10 text-indigo-500 rounded-md"
                     >
-                        <FiTarget size={20} />
+                        <p>ASSIGNMENT</p>
                     </Link>
                     <Link
                         href={"/courses/" + course.id + "/quizzes"}
                         className="p-2 bg-indigo-500/10 text-indigo-500 rounded-md"
                     >
-                        <MdQuiz size={20} />
+                        <p>QUIZ</p>
                     </Link>
                     <Link
                         href={"/courses/" + course.id + "/feedbacks"}
                         className="p-2 bg-zinc-500/10 text-zinc-500 rounded-md"
                     >
-                        <MdFeedback size={20} />
+                        <p>FEEDBACK</p>
                     </Link>
                     <Link
                         href={"/courses/" + course.id}

@@ -81,7 +81,7 @@ export default function Login({ status, canResetPassword }) {
                                 setData("remember", e.target.checked)
                             }
                         />
-                        <span className="ms-2 text-sm text-white">
+                        <span className="ms-2 text-sm text-black">
                             Remember me
                         </span>
                     </label>
@@ -96,7 +96,7 @@ export default function Login({ status, canResetPassword }) {
                 <div className="w-full flex justify-center ">
                     <Link
                         href={route("register")}
-                        className="underline text-sm text-white  rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                        className="underline text-sm text-black  rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                     >
                         Don&apos;t have account?
                     </Link>

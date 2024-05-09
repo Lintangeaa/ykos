@@ -71,7 +71,7 @@ const FormUser = ({
                                 <span className="inline-flex rounded-md">
                                     <button
                                         type="button"
-                                        className="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-zinc-800 focus:outline-none transition ease-in-out duration-150"
+                                        className="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-black bg-zinc-800 focus:outline-none transition ease-in-out duration-150"
                                     >
                                         {data.role}
                                     </button>
@@ -86,7 +86,7 @@ const FormUser = ({
                                                 setData("role", "siswa")
                                             }
                                             type="button"
-                                            className="w-full hover:bg-zinc-700 text-white"
+                                            className="w-full hover:bg-zinc-700 text-black"
                                         >
                                             Siswa
                                         </button>
@@ -97,7 +97,7 @@ const FormUser = ({
                                                 setData("role", "guru")
                                             }
                                             type="button"
-                                            className="w-full hover:bg-zinc-700 text-white"
+                                            className="w-full hover:bg-zinc-700 text-black"
                                         >
                                             Guru
                                         </button>
@@ -108,7 +108,7 @@ const FormUser = ({
                                                 setData("role", "admin")
                                             }
                                             type="button"
-                                            className="w-full hover:bg-zinc-700 text-white"
+                                            className="w-full hover:bg-zinc-700 text-black"
                                         >
                                             Admin
                                         </button>

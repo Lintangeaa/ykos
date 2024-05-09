@@ -11,14 +11,14 @@ export default function Quiz({ quizzes, course_id, auth, alreadyAnswer }) {
         <AuthenticatedLayout
             user={auth.user}
             header={
-                <h2 className="font-semibold text-xl text-white leading-tight">
+                <h2 className="font-semibold text-xl text-black leading-tight">
                     Quizzes
                 </h2>
             }
         >
             <Head title="Quizzes" />
 
-            <div className="py-12 space-y-6 text-white">
+            <div className="py-12 space-y-6 text-black">
                 <BasicContainer>
                     {auth.user.role != "siswa" ? (
                         <CreateQuizzes

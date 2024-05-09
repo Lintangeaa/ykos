@@ -14,8 +14,8 @@ export default function QuizExec({
     course_id,
     quiz_id,
     isSubmitted,
+    score,
 }) {
-    console.log(isSubmitted);
     const [selectedAnswer, setSelectedAnswer] = useState(answerIndex);
     const handleSave = () => {
         if (currentNumber != totalQuestion - 1) {
@@ -47,19 +47,22 @@ export default function QuizExec({
         <AuthenticatedLayout
             user={auth.user}
             header={
-                <h2 className="font-semibold text-xl text-white leading-tight">
+                <h2 className="font-semibold text-xl text-black leading-tight">
                     Quizzes
                 </h2>
             }
         >
             <Head title="Quizzes" />
 
-            <div className="py-12 space-y-6 text-white">
+            <div className="py-12 space-y-6 text-black">
                 <BasicContainer>
                     <div className="p-7 space-y-6">
                         {isSubmitted ? (
                             <div className="flex gap-3 items-center justify-center">
-                                <p>You've been submitted this quiz</p>
+                                <p>
+                                    You've been submitted this quiz and your
+                                    score is {score}/100
+                                </p>
                                 <FiCheckCircle
                                     size={20}
                                     className="text-green-500"
@@ -163,7 +166,7 @@ const Pagination = ({ totalQuestion, currentNumber, course_id, quiz_id }) => {
                         {currentNumber === index ? (
                             <PrimaryButton>{index + 1}</PrimaryButton>
                         ) : (
-                            <button className="px-4 py-2 text-xs rounded-md bg-zinc-800">
+                            <button className="px-4 py-2 text-xs rounded-md bg-zinc-300">
                                 {index + 1}
                             </button>
                         )}

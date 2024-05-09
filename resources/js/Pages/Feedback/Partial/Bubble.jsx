@@ -5,7 +5,7 @@ const Bubble = ({ text, isMe, username }) => {
         >
             <div
                 className={`w-3/4 p-4 rounded-lg ${
-                    isMe ? "bg-gray-800 text-white" : " bg-zinc-800 text-white"
+                    isMe ? "bg-gray-200 text-black" : " bg-zinc-200 text-black"
                 }`}
             >
                 <p>{text}</p>
