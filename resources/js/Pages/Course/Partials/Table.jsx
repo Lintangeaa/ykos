@@ -46,10 +46,12 @@ const TableCourses = ({ courses, user }) => {
                             className="text-white rounded-md bg-zinc-900/80"
                         >
                             <td className="px-6 py-3">{index + 1}.</td>
-                            <td className="flex items-center gap-2 px-6 py-3">
+                            <td className="flex gap-2 px-6 py-3">
                                 <p>{course.name}</p>
-                                {!course.isHaveAccess &&
-                                    user.role == "siswa" && <FiLock />}
+                                <p className="flex items-center">
+                                    {!course.isHaveAccess &&
+                                        user.role == "siswa" && <FiLock />}
+                                </p>
                             </td>
                             {user.role != "siswa" && (
                                 <td className="px-6 py-3">{course.code}</td>
