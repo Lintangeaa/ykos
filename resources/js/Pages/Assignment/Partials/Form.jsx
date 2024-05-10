@@ -40,7 +40,7 @@ const FormAssignment = ({
                     <div>
                         <InputLabel htmlFor="file" value="File" />
 
-                        <div className="flex items-center justify-between text-white">
+                        <div className="flex items-center justify-between text-black">
                             <TextInput
                                 id="file"
                                 className={`mt-1 ${

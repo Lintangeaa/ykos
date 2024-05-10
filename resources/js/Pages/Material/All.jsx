@@ -8,7 +8,7 @@ export default function GetAllMaterials({ auth, materials, course_id }) {
         <AuthenticatedLayout
             user={auth.user}
             header={
-                <h2 className="font-semibold text-xl text-white leading-tight">
+                <h2 className="font-semibold text-xl text-black leading-tight">
                     Manage Materials
                 </h2>
             }
@@ -20,7 +20,7 @@ export default function GetAllMaterials({ auth, materials, course_id }) {
                     {auth.user.role != "siswa" && (
                         <div className="w-full flex justify-end">
                             <Link
-                                className="p-2 rounded-full bg-zinc-900 text-white text-sm "
+                                className="p-2 rounded-full bg-white text-black text-sm "
                                 href={`/courses/${course_id}/materials/create`}
                             >
                                 <FiPlus size={20} />

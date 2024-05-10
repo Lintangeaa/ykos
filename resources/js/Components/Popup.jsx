@@ -4,7 +4,7 @@ function Popup({ isOpen, setIsOpen, children }) {
             <div
                 className={`${
                     isOpen ? "block" : "hidden"
-                } fixed  top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 w-full max-w-xl bg-zinc-800 p-4 rounded-md z-50`}
+                } fixed  top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 w-full max-w-xl bg-zinc-400 p-4 rounded-md z-50`}
             >
                 {children}
             </div>
@@ -12,7 +12,7 @@ function Popup({ isOpen, setIsOpen, children }) {
                 onClick={() => setIsOpen(false)}
                 className={`${
                     isOpen ? "flex" : "hidden"
-                } fixed top-0 left-0 w-full h-screen bg-zinc-900/20 backdrop-blur-md items-center p-7`}
+                } fixed top-0 left-0 w-full h-screen bg-zinc-200/20 backdrop-blur-md items-center p-7`}
             ></div>
         </>
     );

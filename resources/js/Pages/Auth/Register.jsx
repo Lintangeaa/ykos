@@ -120,7 +120,7 @@ export default function Register() {
                 <div className="w-full flex justify-center">
                     <Link
                         href={route("login")}
-                        className="underline text-sm text-white  rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                        className="underline text-sm text-black  rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                     >
                         Already have account?
                     </Link>

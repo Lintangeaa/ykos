@@ -30,7 +30,7 @@ const TableAssignmentAns = ({ answers, user, course_id, assignment_id }) => {
     return (
         <div className="overflow-x-scroll">
             <table className="table-auto w-full text-sm text-left text-gray-700 rounded-lg overflow-hidden">
-                <thead className="text-sm text-white uppercase bg-zinc-900">
+                <thead className="text-sm text-black uppercase bg-white">
                     <tr>
                         <th className="py-3 px-6">#</th>
                         <th className="py-3 px-6">Student</th>
@@ -41,10 +41,10 @@ const TableAssignmentAns = ({ answers, user, course_id, assignment_id }) => {
                 </thead>
                 <tbody>
                     {answers.length === 0 && (
-                        <tr className="bg-zinc-900/80">
+                        <tr className="bg-white/80">
                             <td
                                 colSpan={5}
-                                className="py-3 px-6 text-center text-white"
+                                className="py-3 px-6 text-center text-black"
                             >
                                 Data is empty..
                             </td>
@@ -53,7 +53,7 @@ const TableAssignmentAns = ({ answers, user, course_id, assignment_id }) => {
                     {answers.map((ans, index) => (
                         <tr
                             key={ans.id}
-                            className="bg-zinc-900/80 text-white rounded-md"
+                            className="bg-white/80 text-black rounded-md"
                         >
                             <td className="py-3 px-6">{index + 1}.</td>
                             <td className="py-3 px-6">{ans.user.name}</td>
@@ -73,7 +73,7 @@ const TableAssignmentAns = ({ answers, user, course_id, assignment_id }) => {
                                                 score: e.target.value,
                                             })
                                         }
-                                        className="w-24 px-4 py-2 bg-zinc-800 border-none outline-none rounded-md focus:ring-white"
+                                        className="w-24 px-4 py-2 bg-zinc-300 border-none outline-none rounded-md focus:ring-white"
                                     />
                                 ) : (
                                     ans.score

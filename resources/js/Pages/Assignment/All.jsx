@@ -42,7 +42,7 @@ export default function GetAllAssignments({
         <AuthenticatedLayout
             user={auth.user}
             header={
-                <h2 className="font-semibold text-xl text-white leading-tight">
+                <h2 className="font-semibold text-xl text-black leading-tight">
                     {auth.user.role != "siswa"
                         ? "Upload Assignments For This Course"
                         : "Assignment"}

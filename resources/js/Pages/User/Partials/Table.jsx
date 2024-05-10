@@ -8,7 +8,7 @@ const TableUsers = ({ users }) => {
     return (
         <div className="overflow-x-scroll">
             <table className="table-auto w-full text-sm text-left text-gray-700 rounded-lg overflow-hidden">
-                <thead className="text-sm text-white uppercase bg-zinc-900">
+                <thead className="text-sm text-black uppercase bg-white">
                     <tr>
                         <th className="py-3 px-6">#</th>
                         <th className="py-3 px-6">Name</th>
@@ -19,10 +19,10 @@ const TableUsers = ({ users }) => {
                 </thead>
                 <tbody>
                     {users.length === 0 && (
-                        <tr className="bg-zinc-900/80">
+                        <tr className="bg-white/80">
                             <td
                                 colSpan={5}
-                                className="py-3 px-6 text-center text-white"
+                                className="py-3 px-6 text-center text-black"
                             >
                                 Users is empty..
                             </td>
@@ -31,7 +31,7 @@ const TableUsers = ({ users }) => {
                     {users.map((user, index) => (
                         <tr
                             key={user.id}
-                            className="bg-zinc-900/80 text-white rounded-md"
+                            className="bg-white/80 text-black rounded-md"
                         >
                             <td className="py-3 px-6">{index + 1}.</td>
                             <td className="py-3 px-6">{user.name}</td>
@@ -67,7 +67,7 @@ function ActionsTableUser({ user }) {
                     href={route("scores.index", user.id)}
                     className="p-2 bg-blue-500/10 text-blue-500 rounded-md"
                 >
-                    <MdScore size={20} />
+                    <p>SCORE</p>
                 </Link>
             )}
             <Link

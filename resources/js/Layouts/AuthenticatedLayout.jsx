@@ -10,8 +10,8 @@ export default function Authenticated({ user, header, children }) {
         useState(false);
 
     return (
-        <div className="min-h-screen bg-black">
-            <nav className="bg-zinc-900 text-white border-b border-zinc-800">
+        <div className="min-h-screen bg-gray-300">
+            <nav className="bg-white text-black border-b border-gray-300">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between h-16">
                         <div className="flex">
@@ -46,6 +46,21 @@ export default function Authenticated({ user, header, children }) {
                                 >
                                     Courses
                                 </NavLink>
+                                {user.role == "siswa" && (
+                                    <>
+                                        <NavLink
+                                            href={route(
+                                                "scores.index",
+                                                user.id
+                                            )}
+                                            active={route().current(
+                                                "scores.index"
+                                            )}
+                                        >
+                                            My Score
+                                        </NavLink>
+                                    </>
+                                )}
                             </div>
                         </div>
 
@@ -56,7 +71,7 @@ export default function Authenticated({ user, header, children }) {
                                         <span className="inline-flex rounded-md">
                                             <button
                                                 type="button"
-                                                className="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-zinc-800 focus:outline-none transition ease-in-out duration-150"
+                                                className="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-black bg-zinc-200 focus:outline-none transition ease-in-out duration-150"
                                             >
                                                 {user.name}
 
@@ -101,7 +116,7 @@ export default function Authenticated({ user, header, children }) {
                                         (previousState) => !previousState
                                     )
                                 }
-                                className="inline-flex items-center justify-center p-2 rounded-md text-white hover:text-white  focus:outline-none focus:bg-zinc-800 focus:text-white transition duration-150 ease-in-out"
+                                className="inline-flex items-center justify-center p-2 rounded-md text-black hover:text-black  focus:outline-none focus:bg-zinc-300 focus:text-black transition duration-150 ease-in-out"
                             >
                                 <svg
                                     className="h-6 w-6"
@@ -166,14 +181,24 @@ export default function Authenticated({ user, header, children }) {
                         >
                             Courses
                         </ResponsiveNavLink>
+                        {user.role == "siswa" && (
+                            <>
+                                <ResponsiveNavLink
+                                    href={route("scores.index", user.id)}
+                                    active={route().current("scores.index")}
+                                >
+                                    My Score
+                                </ResponsiveNavLink>
+                            </>
+                        )}
                     </div>
 
                     <div className="pt-4 pb-1 border-t border-gray-200">
                         <div className="px-4">
-                            <div className="font-medium text-base text-white">
+                            <div className="font-medium text-base text-black">
                                 {user.name}
                             </div>
-                            <div className="font-medium text-sm text-white">
+                            <div className="font-medium text-sm text-black">
                                 {user.email}
                             </div>
                         </div>
@@ -195,7 +220,7 @@ export default function Authenticated({ user, header, children }) {
             </nav>
 
             {header && (
-                <header className="bg-zinc-900 shadow">
+                <header className="bg-white shadow">
                     <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                         {header}
                     </div>

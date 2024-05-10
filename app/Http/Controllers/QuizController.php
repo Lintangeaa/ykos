@@ -120,6 +120,7 @@ class QuizController extends Controller
             'course_id' => $course_id,
             'quiz_id' => $id,
             'isSubmitted' => $answer->score != 0,
+            'score' => $answer->score
         ];
     
         return Inertia::render('Quiz/Exec', $data);

@@ -6,7 +6,7 @@ const TableTeachers = ({ teachers, course_id }) => {
     return (
         <div className="overflow-x-scroll">
             <table className="table-auto w-full text-sm text-left text-gray-700 rounded-lg overflow-hidden">
-                <thead className="text-sm text-white uppercase bg-zinc-900">
+                <thead className="text-sm text-black uppercase bg-white">
                     <tr>
                         <th className="py-3 px-6">#</th>
                         <th className="py-3 px-6">Name</th>
@@ -15,10 +15,10 @@ const TableTeachers = ({ teachers, course_id }) => {
                 </thead>
                 <tbody>
                     {teachers.length === 0 && (
-                        <tr className="bg-zinc-900/80">
+                        <tr className="bg-white/80">
                             <td
                                 colSpan={5}
-                                className="py-3 px-6 text-center text-white"
+                                className="py-3 px-6 text-center text-black"
                             >
                                 Data is empty..
                             </td>
@@ -27,7 +27,7 @@ const TableTeachers = ({ teachers, course_id }) => {
                     {teachers.map((teacher, index) => (
                         <tr
                             key={teacher.id}
-                            className="bg-zinc-900/80 text-white rounded-md"
+                            className="bg-white/80 text-black rounded-md"
                         >
                             <td className="py-3 px-6">{index + 1}.</td>
                             <td className="py-3 px-6">{teacher.user.name}</td>
