@@ -6,16 +6,16 @@ import { MdScore } from "react-icons/md";
 const TableAssignmentScores = ({ datas }) => {
     return (
         <div className="overflow-x-scroll">
-            <div className="px-4 py-2 bg-zinc-100 text-black rounded-t-lg w-fit">
-                Assignment
+            <div className="px-4 py-2 text-black rounded-t-lg bg-zinc-100 w-fit">
+                Tugas
             </div>
-            <table className="table-auto w-full text-sm text-left text-gray-700 rounded-b-lg overflow-hidden">
+            <table className="w-full overflow-hidden text-sm text-left text-gray-700 rounded-b-lg table-auto">
                 <thead className="text-sm text-black uppercase bg-white">
                     <tr>
-                        <th className="py-3 px-6">#</th>
-                        <th className="py-3 px-6">Course</th>
-                        <th className="py-3 px-6">Assignment</th>
-                        <th className="py-3 px-6">Score</th>
+                        <th className="px-6 py-3">#</th>
+                        <th className="px-6 py-3">Course</th>
+                        <th className="px-6 py-3">Tugas</th>
+                        <th className="px-6 py-3">Nilai</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -23,7 +23,7 @@ const TableAssignmentScores = ({ datas }) => {
                         <tr className="bg-white/80">
                             <td
                                 colSpan={5}
-                                className="py-3 px-6 text-center text-black"
+                                className="px-6 py-3 text-center text-black"
                             >
                                 Data is empty..
                             </td>
@@ -32,16 +32,16 @@ const TableAssignmentScores = ({ datas }) => {
                     {datas.map((data, index) => (
                         <tr
                             key={data.id}
-                            className="bg-white/80 text-black rounded-md"
+                            className="text-black rounded-md bg-white/80"
                         >
-                            <td className="py-3 px-6">{index + 1}.</td>
-                            <td className="py-3 px-6">
+                            <td className="px-6 py-3">{index + 1}.</td>
+                            <td className="px-6 py-3">
                                 {data.assignment.course.name}
                             </td>
-                            <td className="py-3 px-6">
+                            <td className="px-6 py-3">
                                 {data.assignment.name}
                             </td>
-                            <td className="py-3 px-6">{data.score}</td>
+                            <td className="px-6 py-3 ">{data.score}</td>
                         </tr>
                     ))}
                 </tbody>

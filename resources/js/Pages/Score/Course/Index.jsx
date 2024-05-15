@@ -16,8 +16,8 @@ const ScoreByCourseId = ({
         <AuthenticatedLayout
             user={auth.user}
             header={
-                <h2 className="text-xl font-semibold leading-tight text-white">
-                    Score for {courseName}
+                <h2 className="text-xl font-semibold leading-tight text-zinc-700 bg-white/80">
+                    Nilai untuk {courseName}
                 </h2>
             }
         >

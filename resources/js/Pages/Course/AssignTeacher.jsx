@@ -22,7 +22,7 @@ export default function AssignTeacher({ auth, teachers, course_id }) {
         <AuthenticatedLayout
             user={auth.user}
             header={
-                <h2 className="font-semibold text-xl text-black leading-tight">
+                <h2 className="text-xl font-semibold leading-tight text-black">
                     Assign Teacher
                 </h2>
             }
@@ -30,7 +30,7 @@ export default function AssignTeacher({ auth, teachers, course_id }) {
             <Head title="Teacher" />
 
             <div className="py-12">
-                <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-3">
+                <div className="mx-auto space-y-3 max-w-7xl sm:px-6 lg:px-8">
                     <SearchData data={allTeacher} course_id={course_id} />
                     <TableTeachers course_id={course_id} teachers={teachers} />
                 </div>
@@ -82,7 +82,7 @@ const SearchData = ({ data, course_id }) => {
     };
 
     return (
-        <div className="flex w-full gap-3 relative">
+        <div className="relative flex w-full gap-3">
             <TextInput
                 className="w-full"
                 type="text"
@@ -92,7 +92,7 @@ const SearchData = ({ data, course_id }) => {
             />
             <PrimaryButton onClick={() => handleSubmit()}>assign</PrimaryButton>
             {searchTerm && (
-                <div className="absolute bg-zinc-700 rounded-md mt-1 w-fit top-full text-black">
+                <div className="absolute mt-1 text-white border-black rounded-md bg-zinc-500 w-fit top-full">
                     {searchResults.length == 0 && !selected && (
                         <p className="px-4 py-2">Teacher Not Found</p>
                     )}
@@ -100,7 +100,7 @@ const SearchData = ({ data, course_id }) => {
                         <div
                             key={teacher.id}
                             onClick={() => selectTeacher(teacher)}
-                            className="p-2 hover:bg-zinc-800 cursor-pointer"
+                            className="p-2 cursor-pointer hover:bg-zinc-800"
                         >
                             {teacher.name}
                         </div>

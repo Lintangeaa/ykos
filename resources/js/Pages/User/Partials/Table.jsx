@@ -7,14 +7,14 @@ const TableUsers = ({ users }) => {
     console.log(users);
     return (
         <div className="overflow-x-scroll">
-            <table className="table-auto w-full text-sm text-left text-gray-700 rounded-lg overflow-hidden">
+            <table className="w-full overflow-hidden text-sm text-left text-gray-700 rounded-lg table-auto">
                 <thead className="text-sm text-black uppercase bg-white">
                     <tr>
-                        <th className="py-3 px-6">#</th>
-                        <th className="py-3 px-6">Name</th>
-                        <th className="py-3 px-6">Email</th>
-                        <th className="py-3 px-6">Role</th>
-                        <th className="py-3 px-6 text-center">Action</th>
+                        <th className="px-6 py-3">#</th>
+                        <th className="px-6 py-3">Name</th>
+                        <th className="px-6 py-3">Email</th>
+                        <th className="px-6 py-3">Role</th>
+                        <th className="px-6 py-3 text-center">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -22,7 +22,7 @@ const TableUsers = ({ users }) => {
                         <tr className="bg-white/80">
                             <td
                                 colSpan={5}
-                                className="py-3 px-6 text-center text-black"
+                                className="px-6 py-3 text-center text-black"
                             >
                                 Users is empty..
                             </td>
@@ -31,15 +31,15 @@ const TableUsers = ({ users }) => {
                     {users.map((user, index) => (
                         <tr
                             key={user.id}
-                            className="bg-white/80 text-black rounded-md"
+                            className="text-black rounded-md bg-white/80"
                         >
-                            <td className="py-3 px-6">{index + 1}.</td>
-                            <td className="py-3 px-6">{user.name}</td>
-                            <td className="py-3 px-6">{user.email}</td>
-                            <td className="py-3 px-6">
+                            <td className="px-6 py-3">{index + 1}.</td>
+                            <td className="px-6 py-3">{user.name}</td>
+                            <td className="px-6 py-3">{user.email}</td>
+                            <td className="px-6 py-3">
                                 <UserRoleBadge role={user.role} />
                             </td>
-                            <td className="py-3 px-6">
+                            <td className="px-6 py-3">
                                 {user.role != "admin" && (
                                     <ActionsTableUser user={user} />
                                 )}
@@ -65,20 +65,20 @@ function ActionsTableUser({ user }) {
             {user.role == "siswa" && (
                 <Link
                     href={route("scores.index", user.id)}
-                    className="p-2 bg-blue-500/10 text-blue-500 rounded-md"
+                    className="p-2 text-blue-500 rounded-md bg-blue-500/10"
                 >
                     <p>SCORE</p>
                 </Link>
             )}
             <Link
                 href={"/users/" + user.id}
-                className="p-2 bg-blue-500/10 text-blue-500 rounded-md"
+                className="p-2 text-blue-500 rounded-md bg-blue-500/10"
             >
                 <FiEdit size={20} />
             </Link>
             <button
                 onClick={() => handleDelete()}
-                className="p-2 bg-red-500/10 text-red-500 rounded-md"
+                className="p-2 text-red-500 rounded-md bg-red-500/10"
             >
                 <FiTrash size={20} />
             </button>

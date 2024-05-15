@@ -11,13 +11,13 @@ export default function Authenticated({ user, header, children }) {
 
     return (
         <div className="min-h-screen bg-gray-300">
-            <nav className="bg-white text-black border-b border-gray-300">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <nav className="text-black bg-white border-b border-gray-300">
+                <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
                     <div className="flex justify-between h-16">
                         <div className="flex">
-                            <div className="shrink-0 flex items-center">
+                            <div className="flex items-center shrink-0">
                                 <Link href="/">
-                                    <ApplicationLogo className="block h-9 w-auto fill-current text-gray-800" />
+                                    <ApplicationLogo className="block w-auto text-gray-800 fill-current h-9" />
                                 </Link>
                             </div>
 
@@ -26,7 +26,7 @@ export default function Authenticated({ user, header, children }) {
                                     href={route("dashboard")}
                                     active={route().current("dashboard")}
                                 >
-                                    Dashboard
+                                    Home
                                 </NavLink>
                                 {user.role == "admin" && (
                                     <>
@@ -57,7 +57,7 @@ export default function Authenticated({ user, header, children }) {
                                                 "scores.index"
                                             )}
                                         >
-                                            My Score
+                                            Nilai
                                         </NavLink>
                                     </>
                                 )}
@@ -65,13 +65,13 @@ export default function Authenticated({ user, header, children }) {
                         </div>
 
                         <div className="hidden sm:flex sm:items-center sm:ms-6">
-                            <div className="ms-3 relative">
+                            <div className="relative ms-3">
                                 <Dropdown>
                                     <Dropdown.Trigger>
                                         <span className="inline-flex rounded-md">
                                             <button
                                                 type="button"
-                                                className="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-black bg-zinc-200 focus:outline-none transition ease-in-out duration-150"
+                                                className="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 text-black transition duration-150 ease-in-out border border-transparent rounded-md bg-zinc-200 focus:outline-none"
                                             >
                                                 {user.name}
 
@@ -109,17 +109,17 @@ export default function Authenticated({ user, header, children }) {
                             </div>
                         </div>
 
-                        <div className="-me-2 flex items-center sm:hidden">
+                        <div className="flex items-center -me-2 sm:hidden">
                             <button
                                 onClick={() =>
                                     setShowingNavigationDropdown(
                                         (previousState) => !previousState
                                     )
                                 }
-                                className="inline-flex items-center justify-center p-2 rounded-md text-black hover:text-black  focus:outline-none focus:bg-zinc-300 focus:text-black transition duration-150 ease-in-out"
+                                className="inline-flex items-center justify-center p-2 text-black transition duration-150 ease-in-out rounded-md hover:text-black focus:outline-none focus:bg-zinc-300 focus:text-black"
                             >
                                 <svg
-                                    className="h-6 w-6"
+                                    className="w-6 h-6"
                                     stroke="currentColor"
                                     fill="none"
                                     viewBox="0 0 24 24"
@@ -195,10 +195,10 @@ export default function Authenticated({ user, header, children }) {
 
                     <div className="pt-4 pb-1 border-t border-gray-200">
                         <div className="px-4">
-                            <div className="font-medium text-base text-black">
+                            <div className="text-base font-medium text-black">
                                 {user.name}
                             </div>
-                            <div className="font-medium text-sm text-black">
+                            <div className="text-sm font-medium text-black">
                                 {user.email}
                             </div>
                         </div>
@@ -221,7 +221,7 @@ export default function Authenticated({ user, header, children }) {
 
             {header && (
                 <header className="bg-white shadow">
-                    <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                    <div className="px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
                         {header}
                     </div>
                 </header>

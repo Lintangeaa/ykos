@@ -22,7 +22,7 @@ const TableCourses = ({ courses, user }) => {
                 <thead className="text-sm text-black uppercase bg-white">
                     <tr>
                         <th className="px-6 py-3">#</th>
-                        <th className="px-6 py-3">Name</th>
+                        <th className="px-6 py-3">Nama Course</th>
                         {user.role != "siswa" && (
                             <th className="px-6 py-3">Code</th>
                         )}
@@ -131,7 +131,7 @@ function ActionsTableCourse({ course, user }) {
                     href={"/courses/" + course.id + "/teachers"}
                     className="p-2 text-green-500 rounded-md bg-green-500/10"
                 >
-                    <p>TEACHERS</p>
+                    <p>Akses Guru</p>
                 </Link>
             )}
 
@@ -141,25 +141,25 @@ function ActionsTableCourse({ course, user }) {
                         href={"/courses/" + course.id + "/materials"}
                         className="p-2 text-orange-500 rounded-md bg-orange-500/10"
                     >
-                        <p>MATERIALS</p>
+                        <p>Modul</p>
                     </Link>
                     <Link
                         href={"/courses/" + course.id + "/assignments"}
                         className="p-2 text-indigo-500 rounded-md bg-indigo-500/10"
                     >
-                        <p>ASSIGNMENT</p>
+                        <p>Tugas</p>
                     </Link>
                     <Link
                         href={"/courses/" + course.id + "/quizzes"}
                         className="p-2 text-indigo-500 rounded-md bg-indigo-500/10"
                     >
-                        <p>QUIZ</p>
+                        <p>Kuis</p>
                     </Link>
                     <Link
                         href={"/courses/" + course.id + "/feedbacks"}
                         className="p-2 rounded-md bg-zinc-500/10 text-zinc-500"
                     >
-                        <p>FEEDBACK</p>
+                        <p>Feedback</p>
                     </Link>
                 </>
             ) : (
@@ -179,31 +179,31 @@ function ActionsTableCourse({ course, user }) {
                         href={"/courses/" + course.id + "/scores"}
                         className="p-2 text-green-500 rounded-md bg-green-500/10"
                     >
-                        <MdScore size={20} />
+                        Nilai
                     </Link>
                     <Link
                         href={"/courses/" + course.id + "/materials"}
                         className="p-2 text-orange-500 rounded-md bg-orange-500/10"
                     >
-                        <p>MATERIALS</p>
+                        <p>Modul</p>
                     </Link>
                     <Link
                         href={"/courses/" + course.id + "/assignments"}
                         className="p-2 text-indigo-500 rounded-md bg-indigo-500/10"
                     >
-                        <p>ASSIGNMENT</p>
+                        <p>Tugas</p>
                     </Link>
                     <Link
                         href={"/courses/" + course.id + "/quizzes"}
                         className="p-2 text-indigo-500 rounded-md bg-indigo-500/10"
                     >
-                        <p>QUIZ</p>
+                        <p>Kuis</p>
                     </Link>
                     <Link
                         href={"/courses/" + course.id + "/feedbacks"}
                         className="p-2 rounded-md bg-zinc-500/10 text-zinc-500"
                     >
-                        <p>FEEDBACK</p>
+                        <p>Feedback</p>
                     </Link>
                     <Link
                         href={"/courses/" + course.id}

@@ -4,11 +4,11 @@ import React from "react";
 const AssignmentTable = ({ datas }) => {
     return (
         <div className="overflow-x-scroll">
-            <div className="px-4 py-2 rounded-t-lg bg-zinc-300/10 text-zinc-300 w-fit">
-                Assignment
+            <div className="px-4 py-2 text-black rounded-t-lg bg-white/80 w-fit">
+                Tugas
             </div>
             <table className="w-full overflow-hidden text-sm text-left text-gray-700 rounded-b-lg table-auto">
-                <thead className="text-sm text-white uppercase bg-zinc-900">
+                <thead className="text-sm text-black uppercase bg-white">
                     <tr>
                         <th className="px-6 py-3">#</th>
                         <th className="px-6 py-3">User</th>
@@ -17,10 +17,10 @@ const AssignmentTable = ({ datas }) => {
                 </thead>
                 <tbody>
                     {datas.length === 0 && (
-                        <tr className="bg-zinc-900/80">
+                        <tr className="text-black bg-white/80">
                             <td
                                 colSpan={3}
-                                className="px-6 py-3 text-center text-white"
+                                className="px-6 py-3 text-center text-black"
                             >
                                 No assignment scores available.
                             </td>

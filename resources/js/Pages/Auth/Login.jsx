@@ -31,7 +31,7 @@ export default function Login({ status, canResetPassword }) {
             <Head title="Log in" />
 
             {status && (
-                <div className="mb-4 font-medium text-sm text-green-600">
+                <div className="mb-4 text-sm font-medium text-green-600">
                     {status}
                 </div>
             )}
@@ -45,7 +45,7 @@ export default function Login({ status, canResetPassword }) {
                         type="email"
                         name="email"
                         value={data.email}
-                        className="mt-1 block w-full"
+                        className="block w-full mt-1"
                         autoComplete="username"
                         isFocused={true}
                         onChange={(e) => setData("email", e.target.value)}
@@ -63,7 +63,7 @@ export default function Login({ status, canResetPassword }) {
                         type="password"
                         name="password"
                         value={data.password}
-                        className="mt-1 block w-full"
+                        className="block w-full mt-1"
                         autoComplete="current-password"
                         onChange={(e) => setData("password", e.target.value)}
                         placeholder="Password"
@@ -81,7 +81,7 @@ export default function Login({ status, canResetPassword }) {
                                 setData("remember", e.target.checked)
                             }
                         />
-                        <span className="ms-2 text-sm text-black">
+                        <span className="text-sm text-black ms-2">
                             Remember me
                         </span>
                     </label>
@@ -93,14 +93,6 @@ export default function Login({ status, canResetPassword }) {
                 >
                     <p>Login</p>
                 </PrimaryButton>
-                <div className="w-full flex justify-center ">
-                    <Link
-                        href={route("register")}
-                        className="underline text-sm text-black  rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                    >
-                        Don&apos;t have account?
-                    </Link>
-                </div>
             </form>
         </GuestLayout>
     );

@@ -9,19 +9,19 @@ export default function GetAllCourses({ auth, courses }) {
         <AuthenticatedLayout
             user={auth.user}
             header={
-                <h2 className="font-semibold text-xl text-black leading-tight">
-                    Manage Courses
+                <h2 className="text-xl font-semibold leading-tight text-black">
+                    Course yang ada
                 </h2>
             }
         >
             <Head title="Courses" />
 
             <div className="py-12">
-                <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-3">
+                <div className="mx-auto space-y-3 max-w-7xl sm:px-6 lg:px-8">
                     {auth.user.role != "siswa" && (
-                        <div className="w-full flex justify-end">
+                        <div className="flex justify-end w-full">
                             <Link
-                                className="p-2 rounded-full bg-zinc-200 text-black text-sm "
+                                className="p-2 text-sm text-black rounded-full bg-zinc-200 "
                                 href="/courses/create"
                             >
                                 <FiPlus size={20} />
