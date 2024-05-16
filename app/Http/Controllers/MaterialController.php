@@ -34,12 +34,12 @@ class MaterialController extends Controller
         $data = $request->validated();
         DB::beginTransaction();
         try {
-            $filePath = $request->file('file')->store('files', 'public');
-            $uploadedFile = '/storage/' . $filePath;
+            $filePath = $request->file('file')->store('files', ['disk' => 'custom']);
+            // dd($filePath);
             Material::create([
                 'name' => $data['name'],
                 'course_id' => $course_id,
-                'path' => $uploadedFile
+                'path' => $filePath
             ]);
             DB::commit();
         } catch (\Throwable $th) {
@@ -67,9 +67,9 @@ class MaterialController extends Controller
         }
     
         if ($request->hasFile('file')) {
-            $filePath = $request->file('file')->store('files', 'public');
-            $uploadedFile = '/storage/' . $filePath;
-            $data['path'] = $uploadedFile;
+            $filePath = $request->file('file')->store('files', ['disk' => 'custom']);
+
+            $data['path'] = $filePath;
         }
     
         if (array_key_exists('course_id', $validated) && $validated['course_id'] !== null) {

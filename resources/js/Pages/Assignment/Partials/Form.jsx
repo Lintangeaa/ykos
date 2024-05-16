@@ -55,7 +55,7 @@ const FormAssignment = ({
                             />
                             {assignment?.path ? (
                                 <a
-                                    href={assignment.path}
+                                    href={"/" + assignment.path}
                                     download={true}
                                     className="p-2 mt-1 rounded-full bg-blue-500/10 text-blue-500"
                                 >

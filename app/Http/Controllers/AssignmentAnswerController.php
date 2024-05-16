@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\AssignmentAnswer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 
 class AssignmentAnswerController extends Controller
@@ -19,16 +20,15 @@ class AssignmentAnswerController extends Controller
         $exists = AssignmentAnswer::where('assignment_id', $assignment_id)->where('user_id', $user->id)->first();
         DB::beginTransaction();
         try {
-            $filePath = $request->file('file')->store('files', 'public');
-            $uploadedFile = '/storage/' . $filePath;
+            $filePath = $request->file('file')->store('files', ['disk' => 'custom']);
             if($exists) {
-                $exists->path = $uploadedFile;
+                $exists->path = $filePath;
                 $exists->save();
             } else {
                 AssignmentAnswer::create([
                     'assignment_id' => $assignment_id,
                     'user_id' => $user->id,
-                    'path' => $uploadedFile,
+                    'path' => $filePath,
                     'score' => 0
                 ]);
             }

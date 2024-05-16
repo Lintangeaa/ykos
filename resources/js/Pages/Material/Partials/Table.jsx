@@ -62,7 +62,7 @@ function ActionsTableMaterial({ material, course_id, user }) {
         <div className="flex items-center justify-center gap-3">
             <a
                 download={true}
-                href={material.path}
+                href={"/" + material.path}
                 className="p-2 bg-green-500/10 text-green-500 rounded-md"
             >
                 <FiDownload size={20} />
