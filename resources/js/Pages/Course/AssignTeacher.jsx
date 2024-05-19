@@ -92,7 +92,7 @@ const SearchData = ({ data, course_id }) => {
             />
             <PrimaryButton onClick={() => handleSubmit()}>assign</PrimaryButton>
             {searchTerm && (
-                <div className="absolute bg-zinc-700 rounded-md mt-1 w-fit top-full text-black">
+                <div className="absolute bg-slate-100 rounded-md mt-1 w-fit top-full text-black transition-all duration-300">
                     {searchResults.length == 0 && !selected && (
                         <p className="px-4 py-2">Teacher Not Found</p>
                     )}
@@ -100,7 +100,7 @@ const SearchData = ({ data, course_id }) => {
                         <div
                             key={teacher.id}
                             onClick={() => selectTeacher(teacher)}
-                            className="p-2 hover:bg-zinc-800 cursor-pointer"
+                            className="p-2 hover:bg-slate-200 cursor-pointer rounded-md transition-all duration-300"
                         >
                             {teacher.name}
                         </div>

@@ -46,13 +46,19 @@ class CourseController extends Controller
     }
 
     public function teachers(Request $request, $course_id) {
-        $teachers = CourseUser::where('course_id', $course_id)->with('user')->get();
-        // dd($teachers);
+        $teachers = CourseUser::where('course_id', $course_id)
+            ->whereHas('user', function($query) {
+                $query->where('role', 'guru');
+            })
+            ->with('user')
+            ->get();
+    
         return Inertia::render('Course/AssignTeacher', [
             'teachers' => $teachers,
             'course_id' => $course_id
         ]);
     }
+    
 
     public function addTeacherToCourse(Request $request, $course_id) {
         // dd($request->all());
