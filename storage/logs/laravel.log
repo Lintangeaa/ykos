@@ -557,3 +557,41 @@
 #16 /Users/prakosolintang/MyPROJECT/PHP/Laravel/ykos/artisan(13): Illuminate\\Foundation\\Application->handleCommand(Object(Symfony\\Component\\Console\\Input\\ArgvInput))
 #17 {main}
 "} 
+[2024-05-28 16:03:22] production.ERROR: No arguments expected for "key:" command, got "generate". {"exception":"[object] (Symfony\\Component\\Console\\Exception\\RuntimeException(code: 0): No arguments expected for \"key:\" command, got \"generate\". at /Users/prakosolintang/MyPROJECT/PHP/Laravel/ykos/vendor/symfony/console/Input/ArgvInput.php:190)
+[stacktrace]
+#0 /Users/prakosolintang/MyPROJECT/PHP/Laravel/ykos/vendor/symfony/console/Input/ArgvInput.php(83): Symfony\\Component\\Console\\Input\\ArgvInput->parseArgument('generate')
+#1 /Users/prakosolintang/MyPROJECT/PHP/Laravel/ykos/vendor/symfony/console/Input/ArgvInput.php(68): Symfony\\Component\\Console\\Input\\ArgvInput->parseToken('generate', true)
+#2 /Users/prakosolintang/MyPROJECT/PHP/Laravel/ykos/vendor/symfony/console/Input/Input.php(53): Symfony\\Component\\Console\\Input\\ArgvInput->parse()
+#3 /Users/prakosolintang/MyPROJECT/PHP/Laravel/ykos/vendor/symfony/console/Command/Command.php(238): Symfony\\Component\\Console\\Input\\Input->bind(Object(Symfony\\Component\\Console\\Input\\InputDefinition))
+#4 /Users/prakosolintang/MyPROJECT/PHP/Laravel/ykos/vendor/laravel/framework/src/Illuminate/Console/Command.php(181): Symfony\\Component\\Console\\Command\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Illuminate\\Console\\OutputStyle))
+#5 /Users/prakosolintang/MyPROJECT/PHP/Laravel/ykos/vendor/symfony/console/Application.php(1049): Illuminate\\Console\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#6 /Users/prakosolintang/MyPROJECT/PHP/Laravel/ykos/vendor/symfony/console/Application.php(318): Symfony\\Component\\Console\\Application->doRunCommand(Object(Illuminate\\Foundation\\Console\\KeyGenerateCommand), Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#7 /Users/prakosolintang/MyPROJECT/PHP/Laravel/ykos/vendor/symfony/console/Application.php(169): Symfony\\Component\\Console\\Application->doRun(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#8 /Users/prakosolintang/MyPROJECT/PHP/Laravel/ykos/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#9 /Users/prakosolintang/MyPROJECT/PHP/Laravel/ykos/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1187): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#10 /Users/prakosolintang/MyPROJECT/PHP/Laravel/ykos/artisan(13): Illuminate\\Foundation\\Application->handleCommand(Object(Symfony\\Component\\Console\\Input\\ArgvInput))
+#11 {main}
+"} 
+[2024-05-28 16:03:25] production.ERROR: file_get_contents(/Users/prakosolintang/MyPROJECT/PHP/Laravel/ykos/.env): Failed to open stream: No such file or directory {"exception":"[object] (ErrorException(code: 0): file_get_contents(/Users/prakosolintang/MyPROJECT/PHP/Laravel/ykos/.env): Failed to open stream: No such file or directory at /Users/prakosolintang/MyPROJECT/PHP/Laravel/ykos/vendor/laravel/framework/src/Illuminate/Foundation/Console/KeyGenerateCommand.php:100)
+[stacktrace]
+#0 /Users/prakosolintang/MyPROJECT/PHP/Laravel/ykos/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(256): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleError(2, 'file_get_conten...', '/Users/prakosol...', 100)
+#1 [internal function]: Illuminate\\Foundation\\Bootstrap\\HandleExceptions->Illuminate\\Foundation\\Bootstrap\\{closure}(2, 'file_get_conten...', '/Users/prakosol...', 100)
+#2 /Users/prakosolintang/MyPROJECT/PHP/Laravel/ykos/vendor/laravel/framework/src/Illuminate/Foundation/Console/KeyGenerateCommand.php(100): file_get_contents('/Users/prakosol...')
+#3 /Users/prakosolintang/MyPROJECT/PHP/Laravel/ykos/vendor/laravel/framework/src/Illuminate/Foundation/Console/KeyGenerateCommand.php(82): Illuminate\\Foundation\\Console\\KeyGenerateCommand->writeNewEnvironmentFileWith('base64:k9LndJOZ...')
+#4 /Users/prakosolintang/MyPROJECT/PHP/Laravel/ykos/vendor/laravel/framework/src/Illuminate/Foundation/Console/KeyGenerateCommand.php(47): Illuminate\\Foundation\\Console\\KeyGenerateCommand->setKeyInEnvironmentFile('base64:k9LndJOZ...')
+#5 /Users/prakosolintang/MyPROJECT/PHP/Laravel/ykos/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(36): Illuminate\\Foundation\\Console\\KeyGenerateCommand->handle()
+#6 /Users/prakosolintang/MyPROJECT/PHP/Laravel/ykos/vendor/laravel/framework/src/Illuminate/Container/Util.php(41): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#7 /Users/prakosolintang/MyPROJECT/PHP/Laravel/ykos/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(93): Illuminate\\Container\\Util::unwrapIfClosure(Object(Closure))
+#8 /Users/prakosolintang/MyPROJECT/PHP/Laravel/ykos/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Illuminate\\Foundation\\Application), Array, Object(Closure))
+#9 /Users/prakosolintang/MyPROJECT/PHP/Laravel/ykos/vendor/laravel/framework/src/Illuminate/Container/Container.php(662): Illuminate\\Container\\BoundMethod::call(Object(Illuminate\\Foundation\\Application), Array, Array, NULL)
+#10 /Users/prakosolintang/MyPROJECT/PHP/Laravel/ykos/vendor/laravel/framework/src/Illuminate/Console/Command.php(212): Illuminate\\Container\\Container->call(Array)
+#11 /Users/prakosolintang/MyPROJECT/PHP/Laravel/ykos/vendor/symfony/console/Command/Command.php(279): Illuminate\\Console\\Command->execute(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Illuminate\\Console\\OutputStyle))
+#12 /Users/prakosolintang/MyPROJECT/PHP/Laravel/ykos/vendor/laravel/framework/src/Illuminate/Console/Command.php(181): Symfony\\Component\\Console\\Command\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Illuminate\\Console\\OutputStyle))
+#13 /Users/prakosolintang/MyPROJECT/PHP/Laravel/ykos/vendor/symfony/console/Application.php(1049): Illuminate\\Console\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#14 /Users/prakosolintang/MyPROJECT/PHP/Laravel/ykos/vendor/symfony/console/Application.php(318): Symfony\\Component\\Console\\Application->doRunCommand(Object(Illuminate\\Foundation\\Console\\KeyGenerateCommand), Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#15 /Users/prakosolintang/MyPROJECT/PHP/Laravel/ykos/vendor/symfony/console/Application.php(169): Symfony\\Component\\Console\\Application->doRun(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#16 /Users/prakosolintang/MyPROJECT/PHP/Laravel/ykos/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#17 /Users/prakosolintang/MyPROJECT/PHP/Laravel/ykos/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1187): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#18 /Users/prakosolintang/MyPROJECT/PHP/Laravel/ykos/artisan(13): Illuminate\\Foundation\\Application->handleCommand(Object(Symfony\\Component\\Console\\Input\\ArgvInput))
+#19 {main}
+"} 

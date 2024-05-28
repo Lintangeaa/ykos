@@ -28,7 +28,7 @@ const CreateMaterialPage = ({ auth, course_id }) => {
 
             <div className="py-12">
                 <div className="mx-auto space-y-6 max-w-7xl sm:px-6 lg:px-8">
-                    <div className="overflow-hidden shadow-sm bg-zinc-900 sm:rounded-lg">
+                    <div className="overflow-hidden shadow-sm bg-white/80 sm:rounded-lg">
                         <FormMaterial
                             setData={setData}
                             data={data}
