@@ -1,6 +1,7 @@
 import InputError from "@/Components/InputError";
 import PrimaryButton from "@/Components/PrimaryButton";
 import TextInput from "@/Components/TextInput";
+import { Transition } from "@headlessui/react";
 import { useForm } from "@inertiajs/react";
 import { FiSend } from "react-icons/fi";
 
@@ -16,7 +17,6 @@ const InputFeedback = ({ course_id, user_id }) => {
     const submit = (e) => {
         console.log(user_id, data);
         e.preventDefault();
-        // console.log(course_id, user_id);
         setData({ text: "", course_id, user_id });
         post(route("feedbacks.store", course_id));
     };
@@ -39,9 +39,28 @@ const InputFeedback = ({ course_id, user_id }) => {
 
                 <InputError className="mt-2" message={errors.text} />
             </div>
-            <PrimaryButton type="submit">
-                <FiSend size={20} />
-            </PrimaryButton>
+            <Transition
+                show={recentlySuccessful}
+                enter="transition ease-in-out"
+                enterFrom="opacity-0"
+                leave="transition ease-in-out"
+                leaveTo="opacity-0"
+            >
+                <div className="px-4 py-2 bg-green-500 text-white rounded-lg w-fit">
+                    Sent.
+                </div>
+            </Transition>
+            <Transition
+                show={!recentlySuccessful}
+                enter="transition ease-in-out"
+                enterFrom="opacity-0"
+                leave="transition ease-in-out"
+                leaveTo="opacity-0"
+            >
+                <PrimaryButton type="submit">
+                    <FiSend size={20} />
+                </PrimaryButton>
+            </Transition>
         </form>
     );
 };

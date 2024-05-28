@@ -33,9 +33,9 @@ class UserController extends Controller
         $response = [];
     
         if ($request->hasFile('file')) {
-            $filePath = $request->file('file')->store('files', 'public');
-            $uploadedFile = '/storage/' . $filePath;
-            $response['path'] = $uploadedFile;
+            $filePath = $request->file('file')->store('files', ['disk' => 'custom']);
+
+            $response['path'] = $filePath;
         }
     
         return response()->json($response, 200);

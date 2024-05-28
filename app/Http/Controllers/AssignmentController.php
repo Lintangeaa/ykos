@@ -53,18 +53,17 @@ class AssignmentController extends Controller
         $data = $request->validated();
         DB::beginTransaction();
         try {
-            $filePath = $request->file('file')->store('files', 'public');
-            $uploadedFile = '/storage/' . $filePath;
+            $filePath = $request->file('file')->store('files', ['disk' => 'custom']);
             $assignment = Assignment::where('course_id', $course_id)->first();
             if($assignment) {
                 $assignment->name = $data['name'];
-                $assignment->path = $uploadedFile;
+                $assignment->path = $filePath;
                 $assignment->save();
             } else {
                 Assignment::create([
                     'name' => $data['name'],
                     'course_id' => $course_id,
-                    'path' => $uploadedFile
+                    'path' => $filePath
                 ]);
             }
             DB::commit();
@@ -94,9 +93,8 @@ class AssignmentController extends Controller
         }
     
         if ($request->hasFile('file')) {
-            $filePath = $request->file('file')->store('files', 'public');
-            $uploadedFile = '/storage/' . $filePath;
-            $data['path'] = $uploadedFile;
+            $filePath = $request->file('file')->store('files', ['disk' => 'custom']);
+            $data['path'] = $filePath;
         }
     
         if (array_key_exists('course_id', $validated) && $validated['course_id'] !== null) {

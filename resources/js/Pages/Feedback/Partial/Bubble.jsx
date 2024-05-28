@@ -1,20 +1,28 @@
-const Bubble = ({ text, isMe, username }) => {
+const Bubble = ({ text, isMe, username, createdAt }) => {
     return (
         <div
-            className={`w-full flex ${isMe ? "justify-end" : "justify-start"}`}
+            className={`break-words max-w-64 p-4 rounded-lg bg-slate-100 text-black`}
         >
-            <div
-                className={`w-3/4 p-4 rounded-lg ${
-                    isMe ? "bg-gray-200 text-black" : " bg-zinc-200 text-black"
-                }`}
-            >
-                <p>{text}</p>
-                <div className="flex items-center justify-start mt-3 gap-2">
-                    <div className="w-6 h-6 rounded-full bg-white"></div>
-                    <p className="text-sm">{username}</p>
-                </div>
+            <div className="flex items-center justify-between gap-1 text-xs text-black/70 w-full">
+                <p>{username}</p>
             </div>
+            <p className="my-1">{text}</p>
+            <p className="text-xs text-black/70">{dateFormatter(createdAt)}</p>
         </div>
     );
 };
+
 export default Bubble;
+
+export const dateFormatter = (rawDate) => {
+    const date = new Date(rawDate);
+    console.log(rawDate, date);
+    return date.toLocaleString("id-ID", {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: true, // Use `false` for 24-hour time format
+    });
+};

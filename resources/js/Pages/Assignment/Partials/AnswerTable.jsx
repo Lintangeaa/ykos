@@ -58,7 +58,7 @@ const TableAssignmentAns = ({ answers, user, course_id, assignment_id }) => {
                             <td className="py-3 px-6">{index + 1}.</td>
                             <td className="py-3 px-6">{ans.user.name}</td>
                             <td className="py-3 px-6">
-                                <a href={ans.path} download={true}>
+                                <a href={"/" + ans.path} download={true}>
                                     <FiDownload size={15} />
                                 </a>
                             </td>
